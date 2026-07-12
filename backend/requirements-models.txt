@@ -1,0 +1,26 @@
+# Optional real model dependencies.
+#
+# The global Anaconda environment on Windows can refuse to overwrite cv2.pyd.
+# Prefer scripts/install_models.ps1 for this project because it installs the
+# needed packages in stages and avoids forcing an OpenCV replacement.
+
+transformers
+torch
+PytorchWildlife
+supervision==0.23.0
+torchvision
+soundfile
+librosa
+timm
+yolov5
+ultralytics
+lightning
+lightning-utilities
+torchmetrics
+pytorch-lightning
+omegaconf
+tensorboard
+absl-py
+grpcio
+protobuf
+tensorboard-data-server
