@@ -194,7 +194,10 @@ type HealthResponse = {
 
 const configuredApiBase = import.meta.env.VITE_API_BASE as string | undefined;
 // 开发环境始终走 Vite 同源代理，避免手机把 127.0.0.1 解析成自身。
-const API_BASE = import.meta.env.DEV ? "" : (configuredApiBase?.replace(/\/$/, "") ?? "");
+const deployedApiFallback = window.location.port === "5002"
+  ? `${window.location.protocol}//${window.location.hostname}:5001`
+  : "";
+const API_BASE = import.meta.env.DEV ? "" : (configuredApiBase?.replace(/\/$/, "") || deployedApiFallback);
 const MIN_KNOWLEDGE_MATCH_CONFIDENCE = 0.7;
 const CANDIDATE_DISPLAY_THRESHOLD = 0.45;
 const WILDLIFE_CATEGORIES = new Set(["animal", "bird", "reptile_amphibian", "monitoring_object"]);

@@ -21,7 +21,11 @@ type Page = "dashboard" | "batch" | "reviews" | "media" | "species" | "models" |
 
 useChart([BarChart, GridComponent, TooltipComponent, CanvasRenderer]);
 
-const apiBase = (import.meta.env.VITE_API_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
+const configuredApiBase = (import.meta.env.VITE_API_BASE as string | undefined)?.replace(/\/$/, "") ?? "";
+const deployedApiFallback = window.location.port === "5002"
+  ? `${window.location.protocol}//${window.location.hostname}:5001`
+  : "";
+const apiBase = configuredApiBase || deployedApiFallback;
 const nav: Array<{ page: Page; label: string; icon: React.ReactNode }> = [
   { page: "dashboard", label: "监测数据总览", icon: <Gauge size={18} /> },
   { page: "batch", label: "批量智能分析", icon: <UploadCloud size={18} /> },
