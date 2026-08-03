@@ -3745,10 +3745,65 @@ th {
   color: #40564c;
 }
 
+.field-report-upload {
+  position: relative;
+}
+
+.field-report-upload input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.field-report-upload-box {
+  min-height: 142px;
+  border: 2px dashed #a9c8bd;
+  border-radius: 12px;
+  background: #f6faf8;
+  color: #4f6e63;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 7px;
+  text-align: center;
+  padding: 16px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.field-report-upload-box small {
+  color: #75877f;
+}
+
+.field-report-upload-box.has-preview {
+  padding: 0;
+  border-style: solid;
+}
+
+.field-report-upload-box img {
+  width: 100%;
+  height: 210px;
+  display: block;
+  object-fit: cover;
+}
+
+.field-report-image-clear {
+  width: 100%;
+  justify-content: center;
+  margin-top: -6px;
+}
+
 .field-report-actions {
   display: flex;
   gap: 10px;
   margin: 15px 0;
+}
+
+.field-report-actions > button {
+  flex: 1;
+  justify-content: center;
 }
 
 .field-report-list {

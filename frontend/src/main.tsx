@@ -824,13 +824,12 @@ function ResourceCenterPage({
   pdfWeakReferenceSpecies: ReferenceSpecies[];
   openSetReferenceSpecies: ReferenceSpecies[];
 }) {
-  const [section, setSection] = React.useState<"animals" | "plants" | "gallery">("animals");
+  const [section, setSection] = React.useState<"animals" | "plants">("animals");
   return <>
-    <PageHeader eyebrow="物种资源中心" title="动植物知识库与图鉴" subtitle="按名称、学名、分类和保护等级集中查询物种资料。" />
+    <PageHeader eyebrow="物种资源中心" title="动植物知识库" subtitle="按名称、学名、分类和保护等级集中查询物种资料。" />
     <div className="mobile-resource-tabs" role="tablist">
       <button className={section === "animals" ? "active" : ""} onClick={() => setSection("animals")}>动物知识库</button>
       <button className={section === "plants" ? "active" : ""} onClick={() => setSection("plants")}>植物知识库</button>
-      <button className={section === "gallery" ? "active" : ""} onClick={() => setSection("gallery")}>物种图鉴</button>
     </div>
     <KnowledgeLibraryPage view={section} animalSpecies={animalSpecies} pdfWeakReferenceSpecies={pdfWeakReferenceSpecies} openSetReferenceSpecies={openSetReferenceSpecies} />
   </>;
@@ -844,7 +843,14 @@ function FieldReportPage({ token, activeJobId, result }: { token: string; active
   const [position, setPosition] = React.useState<{ latitude: number; longitude: number; accuracy: number } | null>(null);
   const [reports, setReports] = React.useState<FieldReport[]>([]);
   const [message, setMessage] = React.useState("");
+  const [reportImage, setReportImage] = React.useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
   const headers = { Authorization: `Bearer ${token}` };
+  const reportImagePreview = React.useMemo(() => reportImage ? URL.createObjectURL(reportImage) : "", [reportImage]);
+
+  React.useEffect(() => () => {
+    if (reportImagePreview) URL.revokeObjectURL(reportImagePreview);
+  }, [reportImagePreview]);
 
   const loadReports = React.useCallback(() => {
     fetch(`${API_BASE}/api/v1/field-reports`, { headers })
@@ -865,13 +871,40 @@ function FieldReportPage({ token, activeJobId, result }: { token: string; active
   }
 
   async function submit(event: React.FormEvent) {
-    event.preventDefault(); setMessage("正在提交…");
-    const response = await fetch(`${API_BASE}/api/v1/field-reports`, {
-      method: "POST", headers: { ...headers, "Content-Type": "application/json" },
-      body: JSON.stringify({ analysis_job_id: activeJobId, species_name: speciesName, location_text: locationText, notes, latitude: position?.latitude, longitude: position?.longitude, location_accuracy: position?.accuracy }),
-    });
-    if (!response.ok) { setMessage((await response.json()).detail ?? "上报失败"); return; }
-    setMessage("上报成功，记录已进入专家复核队列"); setNotes(""); loadReports();
+    event.preventDefault();
+    if (!reportImage && !activeJobId) {
+      setMessage("请先拍照或选择一张现场图片");
+      return;
+    }
+    setIsSubmitting(true);
+    setMessage(reportImage ? "正在上传现场图片…" : "正在提交…");
+    try {
+      let reportJobId = activeJobId;
+      if (reportImage) {
+        const form = new FormData();
+        form.append("file", reportImage);
+        form.append("confidence_threshold", "0.35");
+        form.append("include_low_confidence", "true");
+        const uploadResponse = await fetch(`${API_BASE}/api/v1/analysis-jobs`, { method: "POST", headers, body: form });
+        if (!uploadResponse.ok) throw new Error((await uploadResponse.json()).detail ?? "现场图片上传失败");
+        const job: AnalysisJob = await uploadResponse.json();
+        reportJobId = job.id;
+        setMessage("图片上传成功，正在提交上报…");
+      }
+      const response = await fetch(`${API_BASE}/api/v1/field-reports`, {
+        method: "POST", headers: { ...headers, "Content-Type": "application/json" },
+        body: JSON.stringify({ analysis_job_id: reportJobId, species_name: speciesName, location_text: locationText, notes, latitude: position?.latitude, longitude: position?.longitude, location_accuracy: position?.accuracy }),
+      });
+      if (!response.ok) throw new Error((await response.json()).detail ?? "上报失败");
+      setMessage("上报成功，图片和记录已进入专家复核队列");
+      setNotes("");
+      setReportImage(null);
+      loadReports();
+    } catch (reason) {
+      setMessage(reason instanceof Error ? reason.message : "上报失败");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return <>
@@ -879,10 +912,18 @@ function FieldReportPage({ token, activeJobId, result }: { token: string; active
     <section className="report-entry-grid">
       <form className="card field-report-form" onSubmit={submit}>
         <div className="card-title"><ShieldCheck size={18}/><span>上报信息</span></div>
+        <label className="field-report-upload">
+          <span>现场图片</span>
+          <div className={`field-report-upload-box ${reportImagePreview ? "has-preview" : ""}`}>
+            {reportImagePreview ? <img src={reportImagePreview} alt="现场图片预览" /> : <><Camera size={30}/><strong>拍照或从相册选择</strong><small>{activeJobId ? "已关联当前识别图片，也可以重新选择" : "上报需附带一张现场图片"}</small></>}
+          </div>
+          <input type="file" accept="image/*" capture="environment" onChange={(event) => setReportImage(event.target.files?.[0] ?? null)} />
+        </label>
+        {reportImage ? <button type="button" className="secondary-action compact-action field-report-image-clear" onClick={() => setReportImage(null)}><Trash2 size={15}/><span>移除所选图片</span></button> : null}
         <label><span>候选物种</span><input value={speciesName} onChange={(event) => setSpeciesName(event.target.value)} required /></label>
         <label><span>监测点或地点</span><input value={locationText} onChange={(event) => setLocationText(event.target.value)} placeholder="定位失败时请手动填写" /></label>
         <label><span>现场备注</span><textarea value={notes} onChange={(event) => setNotes(event.target.value)} rows={4} placeholder="数量、行为、生境及其他观察信息" /></label>
-        <div className="field-report-actions"><button type="button" className="secondary-action" onClick={locate}>获取位置</button><button type="submit" className="primary-action">提交上报</button></div>
+        <div className="field-report-actions"><button type="button" className="secondary-action" onClick={locate} disabled={isSubmitting}>获取位置</button><button type="submit" className="primary-action" disabled={isSubmitting}>{isSubmitting ? <Loader2 className="spin" size={17}/> : null}{isSubmitting ? "提交中…" : "提交上报"}</button></div>
         {position ? <small>位置：{position.latitude.toFixed(5)}, {position.longitude.toFixed(5)}（精度约 {Math.round(position.accuracy)} 米）</small> : null}
         {message ? <div className="notice-banner">{message}</div> : null}
       </form>
