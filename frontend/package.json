@@ -4,17 +4,25 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
-    "build": "vite build",
-    "preview": "vite preview --host 127.0.0.1"
+    "dev": "vite",
+    "dev:admin": "vite --config admin/vite.config.ts",
+    "build": "vite build --configLoader runner",
+    "build:admin": "vite build --config admin/vite.config.ts --configLoader runner",
+    "build:all": "npm run build && npm run build:admin",
+    "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.7.0",
-    "vite": "^7.0.4",
-    "typescript": "^5.8.3",
+    "antd": "^6.5.3",
+    "echarts": "^6.1.0",
+    "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "lucide-react": "^0.525.0"
+    "typescript": "^5.8.3",
+    "vite": "^7.0.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0"
+  }
 }

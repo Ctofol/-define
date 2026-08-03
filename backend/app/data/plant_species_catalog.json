@@ -1,0 +1,1689 @@
+[
+  {
+    "species_id": "isoetes_sinensis",
+    "cn_name": "中华水韭",
+    "latin_name": "Isoetes sinensis",
+    "category": "plant",
+    "taxon_group": "石松类植物",
+    "order": "水韭目",
+    "family": "水韭科",
+    "genus": "水韭属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "多年生水生或湿生草本，球茎状茎短，叶簇生，孢子囊位于叶基部。",
+    "diet": "",
+    "features": [
+      "叶片细长呈针状并从短茎顶部簇生",
+      "叶基部膨大，内侧具有孢子囊",
+      "常形成低矮水下或湿地草丛"
+    ],
+    "habitat": "浅水池塘、沼泽、稻田边缘及季节性湿地，对水文变化和生境扰动敏感。",
+    "monitoring_value": "古老石松类植物，对湿地水文和生境完整性具有较高指示价值。",
+    "similar_species": [
+      "云贵水韭",
+      "东方水韭"
+    ],
+    "review_tips": "需要拍摄整株、叶基部和孢子囊；仅凭针状叶不能排除水草或禾草幼株。",
+    "tags": [
+      "国家一级",
+      "湿地植物",
+      "石松类"
+    ],
+    "life_form": "水生或湿生草本",
+    "phenology": "孢子成熟期通常集中在夏秋季",
+    "distribution": "广西湿地有历史记录，野外种群稀少；中国东南和长江流域部分地区亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Isoetes%20sinensis?t=foc"
+    ],
+    "image_url": "/plants/isoetes_sinensis.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/380641513",
+    "image_author": "jiuheng92",
+    "image_license": "CC BY-NC",
+    "image_basis_of_record": "iNaturalist openly licensed observation photo; cropped to remove the container edge",
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Isoetes_sinensis_T_C_Palmer_nmnhbotany_10197111_NMNH-01100839.jpg",
+      "https://www.inaturalist.org/observations/379586866",
+      "https://www.inaturalist.org/observations/365371223"
+    ]
+  },
+  {
+    "species_id": "cycas_debaoensis",
+    "cn_name": "德保苏铁",
+    "latin_name": "Cycas debaoensis",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "苏铁目",
+    "family": "苏铁科",
+    "genus": "苏铁属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿木本，茎干较短，羽状叶轮生，雌雄异株，生长缓慢。",
+    "diet": "",
+    "features": [
+      "羽状叶长且叶轴多次分叉",
+      "小叶狭长、排列疏展",
+      "成熟植株具有明显苏铁类球花"
+    ],
+    "habitat": "桂西石灰岩山地的灌丛、疏林和岩石坡地，常见于土层较薄的喀斯特生境。",
+    "monitoring_value": "广西特有珍稀苏铁，是喀斯特植物多样性保护的重要旗舰物种。",
+    "similar_species": [
+      "叉叶苏铁",
+      "石山苏铁",
+      "宽叶苏铁"
+    ],
+    "review_tips": "重点记录叶轴分叉方式、小叶宽度及球花；禁止采挖或折取植株。",
+    "tags": [
+      "国家一级",
+      "广西特有",
+      "苏铁"
+    ],
+    "life_form": "常绿木本",
+    "phenology": "球花和种子形成受植株年龄及季节影响",
+    "distribution": "主要分布于广西德保及邻近桂西喀斯特区域。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Cycas%20debaoensis?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Cycas_debaoensis_01.jpg"
+    ],
+    "image_url": "/plants/cycas_debaoensis.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Cycas_debaoensis_02.jpg",
+    "image_author": "KATHERINE WAGNER-REISS",
+    "image_license": "CC BY-SA 4.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "abies_yuanbaoshanensis",
+    "cn_name": "元宝山冷杉",
+    "latin_name": "Abies yuanbaoshanensis",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "松杉目",
+    "family": "松科",
+    "genus": "冷杉属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，树冠塔形，叶条形，球果直立，适生于高海拔凉湿环境。",
+    "diet": "",
+    "features": [
+      "叶片条形、先端常有凹缺",
+      "叶背具有两条白色气孔带",
+      "球果在枝上直立、成熟后种鳞脱落"
+    ],
+    "habitat": "桂北元宝山高海拔山地常绿阔叶林或针阔混交林，环境冷凉湿润。",
+    "monitoring_value": "广西极小种群野生植物，是高山森林气候变化监测和迁地回归的重要对象。",
+    "similar_species": [
+      "资源冷杉",
+      "冷杉属其他物种"
+    ],
+    "review_tips": "需同时记录叶背气孔带、枝条毛被和球果；远景树形不足以定种。",
+    "tags": [
+      "国家一级",
+      "广西特有",
+      "极小种群"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "球果通常夏季发育、秋季成熟",
+    "distribution": "广西融水元宝山狭域分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://sthjt.gxzf.gov.cn/zwxx/gzdt/t21171370.shtml",
+      "https://www.iplant.cn/info/Abies%20yuanbaoshanensis?t=foc",
+      "https://www.iplant.cn/bhzw/info/207"
+    ],
+    "image_url": "/plants/abies_yuanbaoshanensis.jpg",
+    "image_source_url": "https://ppbc.iplant.cn/tu/10771599",
+    "image_author": "丁涛",
+    "image_license": "CC BY-NC-ND (teaching use)",
+    "image_basis_of_record": "PPBC field photo shown unmodified with the original watermark",
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Missing_Pinophyta.png"
+    ]
+  },
+  {
+    "species_id": "abies_ziyuanensis",
+    "cn_name": "资源冷杉",
+    "latin_name": "Abies ziyuanensis",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "松杉目",
+    "family": "松科",
+    "genus": "冷杉属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，幼树耐阴，适应中高山冷凉多雾环境，天然更新受生境条件限制。",
+    "diet": "",
+    "features": [
+      "条形叶在枝条上近两列排列",
+      "叶背两条白色气孔带明显",
+      "球果直立，苞鳞先端外露"
+    ],
+    "habitat": "桂东北中高海拔山地的针阔混交林和山顶矮林。",
+    "monitoring_value": "狭域分布的珍稀冷杉，是南岭山地森林保护和种群恢复的重点物种。",
+    "similar_species": [
+      "元宝山冷杉",
+      "南方铁杉"
+    ],
+    "review_tips": "结合球果苞鳞、叶尖形态和枝条特征复核，记录海拔和林分环境。",
+    "tags": [
+      "国家一级",
+      "南岭山地",
+      "极小种群"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "球果一般秋季成熟",
+    "distribution": "广西资源、兴安一带及邻近南岭山地有分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://sthjt.gxzf.gov.cn/zwxx/gzdt/t21171370.shtml",
+      "https://www.iplant.cn/info/Abies%20ziyuanensis?t=foc"
+    ],
+    "image_url": "/plants/abies_ziyuanensis.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/270643898",
+    "image_author": "Christopher J. Earle",
+    "image_license": "CC BY-NC",
+    "image_basis_of_record": "iNaturalist openly licensed observation photo; cropped from a clean foliage close-up",
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Missing_Pinophyta.png"
+    ]
+  },
+  {
+    "species_id": "cathaya_argyrophylla",
+    "cn_name": "银杉",
+    "latin_name": "Cathaya argyrophylla",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "松杉目",
+    "family": "松科",
+    "genus": "银杉属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，生长较慢，幼树耐阴，成年树需要较好光照，天然更新条件严格。",
+    "diet": "",
+    "features": [
+      "线形叶坚硬，叶背具显著银白色气孔带",
+      "叶在长枝上螺旋状排列",
+      "球果卵圆形，种鳞木质"
+    ],
+    "habitat": "海拔较高的山地常绿阔叶林和针阔混交林，多见于湿润云雾环境。",
+    "monitoring_value": "中国特有单型属孑遗植物，是古植物区系和山地森林保护的重要对象。",
+    "similar_species": [
+      "油杉",
+      "铁杉",
+      "冷杉"
+    ],
+    "review_tips": "应拍摄叶背银白气孔带、枝条排列及球果；避免只凭远景树冠判断。",
+    "tags": [
+      "国家一级",
+      "孑遗植物",
+      "中国特有"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "球果秋季成熟",
+    "distribution": "广西东北和北部山地有重要种群，中国南方少数山地亦有间断分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://sthjt.gxzf.gov.cn/zwxx/gzdt/t21171370.shtml",
+      "https://www.iplant.cn/info/Cathaya%20argyrophylla?t=foc"
+    ],
+    "image_url": "/plants/cathaya_argyrophylla.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Cathaya_argyrophylla_(32262413083).jpg",
+    "image_author": "Plant Image Library from Boston, USA",
+    "image_license": "CC BY-SA 2.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "glyptostrobus_pensilis",
+    "cn_name": "水松",
+    "latin_name": "Glyptostrobus pensilis",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "松杉目",
+    "family": "柏科",
+    "genus": "水松属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "落叶或半落叶乔木，耐水湿，根部在长期积水环境中可形成膝状呼吸根。",
+    "diet": "",
+    "features": [
+      "小枝具有多型叶，条形叶和鳞形叶可同株出现",
+      "球果近倒卵形",
+      "湿地老树基部可见膝状呼吸根"
+    ],
+    "habitat": "河谷、池塘、沼泽和低地湿地等水湿环境。",
+    "monitoring_value": "古老孑遗湿地树种，可反映低地湿地保存状况和水文变化。",
+    "similar_species": [
+      "水杉",
+      "落羽杉"
+    ],
+    "review_tips": "需比较叶序、球果和根部形态；园林栽培的水杉、落羽杉不能混记为野生水松。",
+    "tags": [
+      "国家一级",
+      "湿地乔木",
+      "孑遗植物"
+    ],
+    "life_form": "落叶或半落叶乔木",
+    "phenology": "球果秋季成熟",
+    "distribution": "广西低地湿地有历史分布和保护回归记录，华南局部地区亦有保存。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://sthjt.gxzf.gov.cn/zwxx/gzdt/t21171370.shtml",
+      "https://www.iplant.cn/info/Glyptostrobus%20pensilis?t=foc"
+    ],
+    "image_url": "/plants/glyptostrobus_pensilis.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Glyptostrobus_pensilis2.jpg",
+    "image_author": "KENPEI",
+    "image_license": "CC BY-SA 3.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "taxus_chinensis",
+    "cn_name": "红豆杉",
+    "latin_name": "Taxus chinensis",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "柏目",
+    "family": "红豆杉科",
+    "genus": "红豆杉属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，生长较慢，雌雄异株，种子外具红色肉质假种皮。",
+    "diet": "",
+    "features": [
+      "叶条形，在侧枝上近两列排列",
+      "叶背具有两条淡色气孔带",
+      "种子被红色杯状假种皮部分包围"
+    ],
+    "habitat": "山地常绿阔叶林、沟谷林和阴湿坡地。",
+    "monitoring_value": "珍稀药用资源树种，野生种群易受采挖和生境破碎化影响。",
+    "similar_species": [
+      "南方红豆杉",
+      "榧树"
+    ],
+    "review_tips": "叶片、芽鳞和种子结构需同时核对；红色假种皮不能单独作为种级依据。",
+    "tags": [
+      "国家一级",
+      "裸子植物",
+      "药用资源"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "种子多在秋季成熟",
+    "distribution": "广西山地有分布，中国中部和南部多个省区亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Taxus%20chinensis?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:2024-07-26_16_03_44_Yew_seedling_surrounded_by_a_low-growing_Juniper_along_Lochatong_Road_in_the_Mountainview_section_of_Ewing_Township,_Mercer_County,_New_Jersey.jpg"
+    ],
+    "image_url": "/plants/taxus_chinensis.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Taxus_chinensis.jpg",
+    "image_author": "Bruce Marlin",
+    "image_license": "CC BY-SA 3.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "taxus_wallichiana_mairei",
+    "cn_name": "南方红豆杉",
+    "latin_name": "Taxus wallichiana var. mairei",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "柏目",
+    "family": "红豆杉科",
+    "genus": "红豆杉属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木或灌木，耐阴，常散生于山地森林，雌雄异株。",
+    "diet": "",
+    "features": [
+      "叶条形、常呈镰状弯曲",
+      "叶背中脉与气孔带明显",
+      "种子外有红色杯状假种皮"
+    ],
+    "habitat": "常绿阔叶林、针阔混交林、沟谷和石灰岩山地阴湿处。",
+    "monitoring_value": "南方森林重要珍稀树种，具有种质、药用与生态保护价值。",
+    "similar_species": [
+      "红豆杉",
+      "云南红豆杉"
+    ],
+    "review_tips": "红豆杉属种间近似，需记录叶片形态、芽鳞和分布地点，必要时由植物分类人员复核。",
+    "tags": [
+      "国家一级",
+      "常绿乔木",
+      "药用资源"
+    ],
+    "life_form": "常绿乔木或灌木",
+    "phenology": "种子多在秋季成熟",
+    "distribution": "广西各山地局部有分布，中国南方多省区亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Taxus%20wallichiana%20var.%20mairei?t=foc"
+    ],
+    "image_url": "/plants/taxus_wallichiana_mairei.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Taxus_wallichiana_var_mairei_kz2.jpg",
+    "image_author": "Krzysztof Ziarnek, Kenraiz",
+    "image_license": "CC BY-SA 4.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "bretschneidera_sinensis",
+    "cn_name": "伯乐树",
+    "latin_name": "Bretschneidera sinensis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "十字花目",
+    "family": "叠珠树科",
+    "genus": "伯乐树属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "落叶乔木，奇数羽状复叶，春季开大型淡红色花，蒴果木质。",
+    "diet": "",
+    "features": [
+      "大型奇数羽状复叶",
+      "花淡红至粉红色、组成总状花序",
+      "果实近球形或卵圆形、果皮木质"
+    ],
+    "habitat": "中低山常绿阔叶林、沟谷林和湿润坡地。",
+    "monitoring_value": "东亚特有古老树种，是森林群落完整性和珍稀树种更新监测对象。",
+    "similar_species": [
+      "无患子科羽状复叶乔木"
+    ],
+    "review_tips": "花期较易识别，非花期需结合复叶、小叶排列、树皮和果实复核。",
+    "tags": [
+      "国家一级",
+      "落叶乔木",
+      "珍稀树种"
+    ],
+    "life_form": "落叶乔木",
+    "phenology": "春季开花，果实夏秋季发育成熟",
+    "distribution": "广西山地有零星分布，中国南方和西南部分地区亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Bretschneidera%20sinensis?t=foc"
+    ],
+    "image_url": "/plants/bretschneidera_sinensis.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Bretschneidera_sinensis_Hemsl_BRETSCHNEIDERACEAE_02.JPG",
+    "image_author": "User:กาหลง",
+    "image_license": "CC BY-SA 3.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "bhesa_sinensis",
+    "cn_name": "膝柄木",
+    "latin_name": "Bhesa robusta",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "金虎尾目",
+    "family": "膝柄木科",
+    "genus": "膝柄木属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，叶互生、革质，花小，核果状果实成熟时呈黄褐色。",
+    "diet": "",
+    "features": [
+      "叶片革质、椭圆至倒卵形",
+      "叶柄两端常有关节状膨大",
+      "圆锥花序腋生，果实核果状"
+    ],
+    "habitat": "南亚热带沟谷雨林、季雨林和石灰岩常绿阔叶林。",
+    "monitoring_value": "广西重点回归保护的珍稀树种，可用于评估南亚热带森林恢复质量。",
+    "similar_species": [
+      "卫矛目其他革质叶乔木"
+    ],
+    "review_tips": "需拍摄叶柄关节、叶脉、花果和树皮；仅凭革质叶容易与多种常绿乔木混淆。",
+    "tags": [
+      "国家一级",
+      "常绿乔木",
+      "回归保护"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "花果期随地区和海拔变化",
+    "distribution": "广西南部和西南部局部森林有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://sthjt.gxzf.gov.cn/zwxx/gzdt/t21171370.shtml",
+      "https://www.iplant.cn/info/Bhesa%20sinica?t=foc",
+      "https://powo.science.kew.org/taxon/urn:lsid:ipni.org:names:159988-1"
+    ],
+    "image_url": "/plants/bhesa_sinensis.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/326971934",
+    "image_author": "(c) thephoxinus, some rights reserved (CC BY-NC)",
+    "image_license": "CC BY-NC",
+    "image_basis_of_record": "iNaturalist openly licensed observation photo"
+  },
+  {
+    "species_id": "hopea_chinensis",
+    "cn_name": "狭叶坡垒",
+    "latin_name": "Hopea chinensis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "锦葵目",
+    "family": "龙脑香科",
+    "genus": "坡垒属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，树干通直，叶革质，果实具有延长的宿存萼片形成翅。",
+    "diet": "",
+    "features": [
+      "叶片狭椭圆至披针形、革质",
+      "侧脉细密而近平行",
+      "果实具两枚显著增长的翅状萼片"
+    ],
+    "habitat": "桂西南石灰岩山地季雨林和沟谷常绿阔叶林。",
+    "monitoring_value": "中国—越南边境热带森林代表性珍稀树种，对原生林保存状况具有指示意义。",
+    "similar_species": [
+      "坡垒属其他种",
+      "望天树"
+    ],
+    "review_tips": "果实翅状萼片和叶脉是关键；无花果材料需结合树皮、枝条与群落环境。",
+    "tags": [
+      "国家一级",
+      "龙脑香科",
+      "喀斯特森林"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "花果期多在春夏至秋季",
+    "distribution": "广西西南部及云南东南部，邻近越南北部亦有分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Hopea%20chinensis?t=foc"
+    ],
+    "image_url": "/plants/hopea_chinensis.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/5935847457",
+    "image_author": "Wang.QG",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "GBIF HUMAN_OBSERVATION; cropped to exclude a non-plant object"
+  },
+  {
+    "species_id": "parashorea_chinensis",
+    "cn_name": "望天树",
+    "latin_name": "Parashorea chinensis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "锦葵目",
+    "family": "龙脑香科",
+    "genus": "娑罗双属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "热带常绿大乔木，树干高大通直，形成森林上层或突出冠层。",
+    "diet": "",
+    "features": [
+      "树干高大通直、基部常具板根",
+      "叶片椭圆形、革质，侧脉明显",
+      "果实具五枚不等长的翅状宿存萼片"
+    ],
+    "habitat": "热带季节雨林、沟谷雨林和石灰岩山地湿润森林。",
+    "monitoring_value": "热带森林标志性上层树种，对低纬度原生森林结构和更新研究意义突出。",
+    "similar_species": [
+      "狭叶坡垒",
+      "龙脑香科其他高大乔木"
+    ],
+    "review_tips": "地面拍摄容易只有树干，需补拍落叶、果实、板根和树冠；幼树不能凭高度特征判断。",
+    "tags": [
+      "国家一级",
+      "热带雨林",
+      "旗舰树种"
+    ],
+    "life_form": "常绿大乔木",
+    "phenology": "花果期因地区气候而异，果实具明显翅",
+    "distribution": "广西西南部和云南南部热带森林，分布延伸至越南北部。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Parashorea%20chinensis?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Parashorea_chinensis_Cho_chi.JPG"
+    ],
+    "image_url": "/plants/parashorea_chinensis.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/303354690",
+    "image_author": "(c) Jiao Sun (孙娇), some rights reserved (CC BY)",
+    "image_license": "CC BY",
+    "image_basis_of_record": "iNaturalist research-grade field photo"
+  },
+  {
+    "species_id": "dayaoshania_cotinifolia",
+    "cn_name": "瑶山苣苔",
+    "latin_name": "Oreocharis cotinifolia",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "唇形目",
+    "family": "苦苣苔科",
+    "genus": "马铃苣苔属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "多年生常绿草本，根状茎近圆柱形，叶全部基生并呈莲座状排列，花冠淡紫至粉紫色。",
+    "diet": "",
+    "features": [
+      "叶片宽卵形、被毛，常近莲座状",
+      "花冠淡紫至紫色、筒状",
+      "叶片两面具白色短柔毛，植株低矮而集中"
+    ],
+    "habitat": "广西大瑶山中海拔常绿阔叶林下的阴湿地表，现存分布点极少。",
+    "monitoring_value": "广西狭域特有植物，对林下阴湿微生境和极小种群保护具有代表性。",
+    "similar_species": [
+      "报春苣苔属植物",
+      "马铃苣苔属植物"
+    ],
+    "review_tips": "需拍摄花冠、叶片两面毛被和整株莲座形态；不开花植株很难仅凭叶片可靠定种。",
+    "tags": [
+      "国家一级",
+      "广西特有",
+      "林下草本"
+    ],
+    "life_form": "多年生草本",
+    "phenology": "花期通常为9月至10月",
+    "distribution": "广西大瑶山狭域分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Dayaoshania%20cotinifolia?t=foc",
+      "https://www.iplant.cn/bhzw/info/1083"
+    ],
+    "image_url": "/plants/dayaoshania_cotinifolia.jpg",
+    "image_source_url": "https://ppbc.iplant.cn/tu/2513183",
+    "image_author": "朱鑫鑫",
+    "image_license": "CC BY-NC-ND (teaching use)",
+    "image_basis_of_record": "PPBC field photo shown unmodified with the original watermark"
+  },
+  {
+    "species_id": "kmeria_septentrionalis",
+    "cn_name": "单性木兰",
+    "latin_name": "Kmeria septentrionalis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "木兰目",
+    "family": "木兰科",
+    "genus": "单性木兰属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，雌雄异株，叶革质，花单生枝顶，聚合果由多数蓇葖组成。",
+    "diet": "",
+    "features": [
+      "革质全缘叶互生",
+      "花单性、枝顶单生",
+      "聚合果椭圆形，成熟蓇葖开裂露出红色种子"
+    ],
+    "habitat": "桂西南石灰岩山地常绿阔叶林、沟谷林和山坡密林。",
+    "monitoring_value": "珍稀木兰科树种，对喀斯特森林植物区系和种群更新研究价值较高。",
+    "similar_species": [
+      "木莲属植物",
+      "含笑属植物"
+    ],
+    "review_tips": "单性花是重要特征，需记录花、果和叶背；无繁殖器官时建议保守到木兰科。",
+    "tags": [
+      "国家一级",
+      "木兰科",
+      "常绿乔木"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "花期春季，果实多在夏秋季成熟",
+    "distribution": "广西西南部石灰岩山地，并见于贵州南部及邻近越南。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Kmeria%20septentrionalis?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://www.inaturalist.org/observations/353213095",
+      "https://www.inaturalist.org/observations/353208473",
+      "https://www.inaturalist.org/observations/353208408",
+      "https://www.inaturalist.org/observations/301988853"
+    ],
+    "image_url": "/plants/kmeria_septentrionalis.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/219526396",
+    "image_author": "(c) michael-ma, some rights reserved (CC BY-NC)",
+    "image_license": "CC BY-NC",
+    "image_basis_of_record": "iNaturalist openly licensed observation photo"
+  },
+  {
+    "species_id": "handeliodendron_bodinieri",
+    "cn_name": "掌叶木",
+    "latin_name": "Handeliodendron bodinieri",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "无患子目",
+    "family": "无患子科",
+    "genus": "掌叶木属",
+    "protection_level": "国家一级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "落叶乔木，掌状复叶，花小而组成圆锥花序，果实成熟时开裂。",
+    "diet": "",
+    "features": [
+      "掌状复叶通常具五枚小叶",
+      "小叶狭长、边缘具锯齿",
+      "果实近球形，成熟后裂开显露种子"
+    ],
+    "habitat": "桂西北和邻近地区石灰岩山地疏林、山坡及沟谷。",
+    "monitoring_value": "中国特有单型属植物，是喀斯特森林特有成分和小种群保护对象。",
+    "similar_species": [
+      "七叶树",
+      "鹅掌柴类植物"
+    ],
+    "review_tips": "注意掌状复叶小叶数、叶缘和果实；不要把掌状单叶或轮生叶误作掌叶木。",
+    "tags": [
+      "国家一级",
+      "中国特有",
+      "喀斯特植物"
+    ],
+    "life_form": "落叶乔木",
+    "phenology": "春夏开花，果实秋季成熟",
+    "distribution": "广西西北部和贵州南部石灰岩地区。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Handeliodendron%20bodinieri?t=foc"
+    ],
+    "image_url": "/plants/handeliodendron_bodinieri.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/383221030",
+    "image_author": "(c) orientalstork, some rights reserved (CC BY-NC)",
+    "image_license": "CC BY-NC",
+    "image_basis_of_record": "iNaturalist openly licensed observation photo"
+  },
+  {
+    "species_id": "camellia_petelotii",
+    "cn_name": "金花茶",
+    "latin_name": "Camellia petelotii",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "杜鹃花目",
+    "family": "山茶科",
+    "genus": "山茶属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿灌木或小乔木，叶革质，花黄色、蜡质，单生或少数着生叶腋。",
+    "diet": "",
+    "features": [
+      "花瓣金黄色并具蜡质光泽",
+      "叶片革质、椭圆形，边缘具细锯齿",
+      "花蕾和嫩枝通常无显著长毛"
+    ],
+    "habitat": "桂南和桂西南常绿阔叶林、沟谷和石灰岩山地林下。",
+    "monitoring_value": "广西代表性珍稀观赏植物，也是山茶属遗传资源和生态旅游科普重点。",
+    "similar_species": [
+      "显脉金花茶",
+      "东兴金花茶",
+      "柠檬黄金花茶"
+    ],
+    "review_tips": "金花茶类种间相似，需记录花色、花瓣、叶脉、毛被和产地；园艺栽培个体应与野生记录分开。",
+    "tags": [
+      "国家二级",
+      "广西代表植物",
+      "黄色山茶"
+    ],
+    "life_form": "常绿灌木或小乔木",
+    "phenology": "多在冬季至翌春开花",
+    "distribution": "广西南部和西南部，邻近越南北部亦有分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Camellia%20petelotii?t=foc"
+    ],
+    "image_url": "/plants/camellia_petelotii.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Camellia_chrysantha.jpg",
+    "image_author": "self",
+    "image_license": "CC BY-SA 3.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "zenia_insignis",
+    "cn_name": "任豆",
+    "latin_name": "Zenia insignis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "豆目",
+    "family": "豆科",
+    "genus": "任豆属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "落叶乔木，奇数羽状复叶，花白色或淡黄色，荚果扁平而木质。",
+    "diet": "",
+    "features": [
+      "大型奇数羽状复叶，小叶对生",
+      "圆锥花序顶生，花淡色",
+      "荚果长圆形、扁平，边缘较厚"
+    ],
+    "habitat": "广西石灰岩山地疏林、山坡和沟谷，耐旱并适应薄土生境。",
+    "monitoring_value": "喀斯特地区重要乡土树种，兼具珍稀植物保护与石漠化修复价值。",
+    "similar_species": [
+      "槐属植物",
+      "黄檀属植物"
+    ],
+    "review_tips": "结合荚果形态、复叶小叶数和树皮判断；道路绿化栽培个体需单独标注。",
+    "tags": [
+      "国家二级",
+      "豆科乔木",
+      "喀斯特修复"
+    ],
+    "life_form": "落叶乔木",
+    "phenology": "春夏开花，荚果秋季成熟",
+    "distribution": "广西广泛见于适宜石灰岩山地，中国西南和华南部分地区亦有分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Zenia%20insignis?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:TAXON_-_2017_-_Azani_-_A_new_subfamily_classification_of_the_Leguminosae_based_on_a_taxonomically_comprehensive_phylogeny.pdf",
+      "https://commons.wikimedia.org/wiki/File:Zenia_insignis_Chun,_Zhejiang_Botanical_Garden.jpg",
+      "https://www.inaturalist.org/observations/385914559"
+    ],
+    "image_url": "/plants/zenia_insignis.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/361356691",
+    "image_author": "(c) 江国彬, some rights reserved (CC BY-NC)",
+    "image_license": "CC BY-NC",
+    "image_basis_of_record": "iNaturalist research-grade field photo"
+  },
+  {
+    "species_id": "erythrophleum_fordii",
+    "cn_name": "格木",
+    "latin_name": "Erythrophleum fordii",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "豆目",
+    "family": "豆科",
+    "genus": "格木属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿大乔木，二回羽状复叶，花小，荚果长而扁平，木材坚硬。",
+    "diet": "",
+    "features": [
+      "二回羽状复叶，小叶多数",
+      "树皮灰褐色、老树干粗壮",
+      "荚果长圆形、扁平且不开裂或迟裂"
+    ],
+    "habitat": "南亚热带常绿阔叶林、季雨林、石灰岩山地和沟谷林。",
+    "monitoring_value": "珍贵乡土用材树种，野生大树和天然更新幼苗均具有重要保护价值。",
+    "similar_species": [
+      "合欢类植物",
+      "凤凰木"
+    ],
+    "review_tips": "复叶容易与多种豆科乔木混淆，需拍摄荚果、花序、树皮及整叶排列。",
+    "tags": [
+      "国家二级",
+      "珍贵用材",
+      "豆科乔木"
+    ],
+    "life_form": "常绿大乔木",
+    "phenology": "春夏开花，荚果秋冬成熟",
+    "distribution": "广西南部和西南部森林有分布，华南其他地区亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Erythrophleum%20fordii?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Erythrophleum_fordii_Lim_xanh.JPG"
+    ],
+    "image_url": "/plants/erythrophleum_fordii.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/170393865",
+    "image_author": "(c) James Hardcastle, some rights reserved (CC BY)",
+    "image_license": "CC BY",
+    "image_basis_of_record": "iNaturalist research-grade field photo"
+  },
+  {
+    "species_id": "fokienia_hodginsii",
+    "cn_name": "福建柏",
+    "latin_name": "Fokienia hodginsii",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "柏目",
+    "family": "柏科",
+    "genus": "福建柏属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，枝条扁平，鳞叶交互对生，球果近球形，喜温暖湿润山地。",
+    "diet": "",
+    "features": [
+      "小枝扁平并排成羽状",
+      "鳞叶背面有白色气孔斑",
+      "球果近球形，种鳞盾形"
+    ],
+    "habitat": "山地常绿阔叶林、针阔混交林和湿润坡地。",
+    "monitoring_value": "南方珍贵针叶树种，可用于监测天然林残存种群和更新状况。",
+    "similar_species": [
+      "侧柏",
+      "扁柏",
+      "翠柏"
+    ],
+    "review_tips": "重点比较小枝排列、叶背白斑和球果种鳞；园林柏类不能仅凭扁平枝确定。",
+    "tags": [
+      "国家二级",
+      "柏科",
+      "常绿乔木"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "球果一般秋季至冬季成熟",
+    "distribution": "广西山地有分布，中国南方及邻近东南亚北部亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Fokienia%20hodginsii?t=foc"
+    ],
+    "image_url": "/plants/fokienia_hodginsii.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/6159272503",
+    "image_author": "angryphyco",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "cibotium_barometz",
+    "cn_name": "金毛狗",
+    "latin_name": "Cibotium barometz",
+    "category": "plant",
+    "taxon_group": "蕨类植物",
+    "order": "桫椤目",
+    "family": "金毛狗科",
+    "genus": "金毛狗属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "大型陆生蕨类，根状茎粗壮并密被金黄色长毛，叶片大型、羽状深裂。",
+    "diet": "",
+    "features": [
+      "根状茎和叶柄基部密被金黄色长毛",
+      "叶片大型、二回或多回羽状",
+      "孢子囊群位于小脉顶端近叶缘处"
+    ],
+    "habitat": "林下、沟谷、溪边和阴湿坡地，常见于酸性土壤环境。",
+    "monitoring_value": "华南森林典型大型蕨类，易因药用采挖受到威胁。",
+    "similar_species": [
+      "桫椤",
+      "大型鳞毛蕨类"
+    ],
+    "review_tips": "金黄色毛被是显著特征，但禁止翻挖根状茎；应从侧面拍摄叶柄基部和叶背。",
+    "tags": [
+      "国家二级",
+      "蕨类植物",
+      "药用资源"
+    ],
+    "life_form": "大型多年生蕨类",
+    "phenology": "全年可见叶片，孢子成熟期随气候而异",
+    "distribution": "广西各湿润山地广布，华南、西南及东南亚亦有分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Cibotium%20barometz?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Gardenology.org-IMG_7869_qsbg11mar.jpg"
+    ],
+    "image_url": "/plants/cibotium_barometz.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Cibotium_Barometz.jpg",
+    "image_author": "Sofi Solihah",
+    "image_license": "CC BY-SA 4.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "alsophila_spinulosa",
+    "cn_name": "桫椤",
+    "latin_name": "Alsophila spinulosa",
+    "category": "plant",
+    "taxon_group": "蕨类植物",
+    "order": "桫椤目",
+    "family": "桫椤科",
+    "genus": "桫椤属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "树形蕨类，主干直立，叶片大型并集中生于茎顶，喜阴湿温暖环境。",
+    "diet": "",
+    "features": [
+      "具有明显直立树干",
+      "大型多回羽状叶在茎顶呈伞状展开",
+      "叶背孢子囊群圆形、沿小脉排列"
+    ],
+    "habitat": "山谷溪边、雨林和常绿阔叶林下阴湿处。",
+    "monitoring_value": "古老树蕨类代表，对森林湿度、林下微气候和生境连续性敏感。",
+    "similar_species": [
+      "黑桫椤",
+      "大叶黑桫椤",
+      "中华桫椤"
+    ],
+    "review_tips": "桫椤科种间鉴定需要叶柄刺、鳞片和孢子囊群细节，平台卡片不替代专业定种。",
+    "tags": [
+      "国家二级",
+      "树蕨",
+      "古老植物"
+    ],
+    "life_form": "树形蕨类",
+    "phenology": "全年常绿，孢子成熟期因地区而异",
+    "distribution": "广西湿润山地常见适生点，中国南方和亚洲热带亚热带地区亦有分布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Alsophila%20spinulosa?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:台灣桫欏_Alsophila_spinulosa_20211202084921_01.jpg"
+    ],
+    "image_url": "/plants/alsophila_spinulosa.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Cyathea_spinulosa.jpg",
+    "image_author": "self",
+    "image_license": "CC BY 3.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "ceratopteris_thalictroides",
+    "cn_name": "水蕨",
+    "latin_name": "Ceratopteris thalictroides",
+    "category": "plant",
+    "taxon_group": "蕨类植物",
+    "order": "水龙骨目",
+    "family": "水蕨科",
+    "genus": "水蕨属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "一年生或短命多年生水生蕨类，营养叶和孢子叶异形，可漂浮或扎根浅水泥土。",
+    "diet": "",
+    "features": [
+      "营养叶宽而多裂，质地柔嫩",
+      "孢子叶裂片狭线形、边缘反卷",
+      "植株生于浅水或湿泥，基部簇生"
+    ],
+    "habitat": "池塘、稻田、水沟、沼泽和缓流水域的浅水或湿泥。",
+    "monitoring_value": "低地湿地代表性蕨类，可反映浅水湿地水质和传统农田水生生境变化。",
+    "similar_species": [
+      "细叶水蕨",
+      "水生碎叶草本"
+    ],
+    "review_tips": "需同时记录营养叶和孢子叶；避免把沉水植物或幼嫩陆生蕨误判为水蕨。",
+    "tags": [
+      "国家二级",
+      "水生蕨类",
+      "湿地植物"
+    ],
+    "life_form": "水生蕨类",
+    "phenology": "温暖季节生长和产生孢子",
+    "distribution": "广西低海拔湿地有分布，中国南方及热带亚热带地区广布。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Ceratopteris%20thalictroides?t=foc"
+    ],
+    "image_url": "/plants/ceratopteris_thalictroides.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/4974299707",
+    "image_author": "Rongrong Angkaew",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "semiliquidambar_cathayensis",
+    "cn_name": "半枫荷",
+    "latin_name": "Semiliquidambar cathayensis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "虎耳草目",
+    "family": "蕈树科",
+    "genus": "半枫荷属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿或半常绿乔木，同株叶形变化较大，可见不裂叶及三裂叶，果序近球形。",
+    "diet": "",
+    "features": [
+      "同株常同时具有全缘或浅裂叶与三裂叶",
+      "叶脉掌状，叶柄较长",
+      "头状果序聚成近球形复果"
+    ],
+    "habitat": "常绿阔叶林、沟谷林、溪边和湿润山坡。",
+    "monitoring_value": "形态和系统演化具有科普价值，也是南方森林珍稀乡土树种。",
+    "similar_species": [
+      "枫香树",
+      "蕈树"
+    ],
+    "review_tips": "叶形变异大，不能只凭三裂叶判断；需结合同株不同叶形、果序和树皮。",
+    "tags": [
+      "国家二级",
+      "叶形多态",
+      "乡土树种"
+    ],
+    "life_form": "常绿或半常绿乔木",
+    "phenology": "春季开花，果序秋冬成熟",
+    "distribution": "广西山地森林有分布，华南和中南部分地区亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Semiliquidambar%20cathayensis?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://www.inaturalist.org/observations/361044725",
+      "https://www.inaturalist.org/observations/336835312"
+    ],
+    "image_url": "/plants/semiliquidambar_cathayensis.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/332396604",
+    "image_author": "(c) ffplamt1234, some rights reserved (CC BY-NC)",
+    "image_license": "CC BY-NC",
+    "image_basis_of_record": "iNaturalist openly licensed observation photo"
+  },
+  {
+    "species_id": "emmenopterys_henryi",
+    "cn_name": "香果树",
+    "latin_name": "Emmenopterys henryi",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "龙胆目",
+    "family": "茜草科",
+    "genus": "香果树属",
+    "protection_level": "国家二级重点保护野生植物",
+    "source_scope": "国家重点保护野生植物名录（2021年）；中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "落叶大乔木，叶对生，花序顶生，部分萼裂片扩大成白色叶状结构。",
+    "diet": "",
+    "features": [
+      "叶对生、宽椭圆形，侧脉明显",
+      "花序中部分萼裂片扩大成白色叶状",
+      "蒴果椭圆形，成熟后开裂"
+    ],
+    "habitat": "山地常绿与落叶阔叶混交林、沟谷和湿润坡地。",
+    "monitoring_value": "中国特有单型属大乔木，开花个体和天然更新具有重要监测价值。",
+    "similar_species": [
+      "珙桐",
+      "茜草科其他对生叶乔木"
+    ],
+    "review_tips": "白色结构是扩大的萼裂片而非花瓣；非花期需记录对生叶、托叶和树皮。",
+    "tags": [
+      "国家二级",
+      "中国特有",
+      "落叶大乔木"
+    ],
+    "life_form": "落叶大乔木",
+    "phenology": "多在夏季开花，果实秋季成熟",
+    "distribution": "广西北部和中部山地局部有分布，中国中南及西南部分地区亦有记录。",
+    "source_urls": [
+      "https://zrzyghj.jiyuan.gov.cn/14195/17129/17143/t823513.html",
+      "https://www.iplant.cn/info/Emmenopterys%20henryi?t=foc"
+    ],
+    "image_url": "/plants/emmenopterys_henryi.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Emmenopterys_henryi_kz01.jpg",
+    "image_author": "Krzysztof Ziarnek, Kenraiz",
+    "image_license": "CC BY-SA 4.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "bombax_ceiba",
+    "cn_name": "木棉",
+    "latin_name": "Bombax ceiba",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "锦葵目",
+    "family": "木棉科",
+    "genus": "木棉属",
+    "protection_level": "广西乡土与常见植物",
+    "source_scope": "中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "落叶大乔木，旱季常先花后叶，树干和大枝多具圆锥形皮刺。",
+    "diet": "",
+    "features": [
+      "橙红色大型花在落叶期开放",
+      "掌状复叶通常具5至7枚小叶",
+      "树干常有明显圆锥状皮刺"
+    ],
+    "habitat": "低海拔村落周边、河谷、路旁和南亚热带开阔地。",
+    "monitoring_value": "广西城市与乡村景观代表树种，花期可用于物候观察。",
+    "similar_species": [
+      "美丽异木棉",
+      "攀枝花"
+    ],
+    "review_tips": "记录花色、树干刺和叶型；栽培个体应标注为人工栽植。",
+    "tags": [
+      "乡土乔木",
+      "春季花卉",
+      "物候观察"
+    ],
+    "life_form": "落叶大乔木",
+    "phenology": "冬末至春季开花，春夏展叶",
+    "distribution": "广西低海拔地区常见，华南和西南广泛栽培或有野生化分布。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Bombax%20ceiba?t=foc"
+    ],
+    "image_url": "/plants/bombax_ceiba.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/6185446401",
+    "image_author": "Mark Clarke",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "osmanthus_fragrans",
+    "cn_name": "桂花",
+    "latin_name": "Osmanthus fragrans",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "唇形目",
+    "family": "木犀科",
+    "genus": "木犀属",
+    "protection_level": "广西常见栽培植物",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿灌木或小乔木，叶对生，花簇生于叶腋，香气浓郁。",
+    "diet": "",
+    "features": [
+      "叶对生、革质，边缘全缘或具细锯齿",
+      "花小、黄白至橙黄色，腋生成簇",
+      "开花时具有明显甜香"
+    ],
+    "habitat": "园林、庭院和村落周边，适宜温暖湿润、排水良好的环境。",
+    "monitoring_value": "广西常见芳香植物，可用于城市绿化和花期科普。",
+    "similar_species": [
+      "女贞",
+      "流苏树"
+    ],
+    "review_tips": "桂花品种繁多，知识卡以物种层级展示，不将园艺品种当作野生分布记录。",
+    "tags": [
+      "常绿灌木",
+      "芳香植物",
+      "园林植物"
+    ],
+    "life_form": "常绿灌木或小乔木",
+    "phenology": "多在秋季开花，温暖地区可多次开花",
+    "distribution": "广西普遍栽培，中国南方广泛应用于园林。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Osmanthus%20fragrans?t=foc"
+    ],
+    "image_url": "/plants/osmanthus_fragrans.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Osmanthus_fragrans_(orange_flowers).jpg",
+    "image_author": "Laitr Keiows",
+    "image_license": "CC BY-SA 3.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "illicium_verum",
+    "cn_name": "八角",
+    "latin_name": "Illicium verum",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "木兰目",
+    "family": "五味子科",
+    "genus": "八角属",
+    "protection_level": "广西重要经济植物",
+    "source_scope": "中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，叶互生并常集生枝端，花被片多数，聚合果具放射状蓇葖。",
+    "diet": "",
+    "features": [
+      "叶革质，常在枝端簇生",
+      "花被片多数，白至粉红色",
+      "成熟果实呈八角状放射排列"
+    ],
+    "habitat": "广西南部和西部低中山常绿阔叶林或人工林，喜温暖湿润。",
+    "monitoring_value": "广西特色香料作物，适合用于经济植物、花果形态和有毒近似种辨识科普。",
+    "similar_species": [
+      "莽草",
+      "红毒茴"
+    ],
+    "review_tips": "食用或药用前必须由专业人员鉴别，不能凭“星形果”自行判断为八角。",
+    "tags": [
+      "经济植物",
+      "香料",
+      "常绿乔木"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "春季开花，果实秋冬成熟",
+    "distribution": "广西南部、西部和西南部有重要栽培与适生区域。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Illicium%20verum?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum20170511_7548.jpg",
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum20170511_7549.jpg",
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum20170511_7551.jpg",
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum_(1).jpg",
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum_0zz.jpg",
+      "https://www.inaturalist.org/observations/269834951",
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum_1zz.jpg",
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum_2zz.jpg",
+      "https://commons.wikimedia.org/wiki/File:Illicium_verum_3zz.jpg"
+    ],
+    "image_url": "/plants/illicium_verum.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Illicium_verum_4zz.jpg",
+    "image_author": "Photo by David J. Stang",
+    "image_license": "CC BY-SA 4.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "litchi_chinensis",
+    "cn_name": "荔枝",
+    "latin_name": "Litchi chinensis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "无患子目",
+    "family": "无患子科",
+    "genus": "荔枝属",
+    "protection_level": "广西重要果树",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，偶数羽状复叶，圆锥花序大，果实成熟时果皮红色且有疣状突起。",
+    "diet": "",
+    "features": [
+      "偶数羽状复叶，小叶革质有光泽",
+      "圆锥花序多分枝",
+      "成熟果皮鲜红、表面具粗糙突起"
+    ],
+    "habitat": "低海拔温暖湿润地区的果园、村落和丘陵地。",
+    "monitoring_value": "广西重要特色果树，可用于果树物候、传粉和农业生态科普。",
+    "similar_species": [
+      "龙眼",
+      "红毛丹"
+    ],
+    "review_tips": "野生、半野生与栽培品系需分开记录，果实颜色受成熟度影响。",
+    "tags": [
+      "果树",
+      "常绿乔木",
+      "农业生态"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "春季开花，夏季果实成熟",
+    "distribution": "广西南部和中部广泛栽培，华南热区常见。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Litchi%20chinensis?t=foc"
+    ],
+    "image_url": "/plants/litchi_chinensis.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/4952258662",
+    "image_author": "Frédérique",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "dimocarpus_longan",
+    "cn_name": "龙眼",
+    "latin_name": "Dimocarpus longan",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "无患子目",
+    "family": "无患子科",
+    "genus": "龙眼属",
+    "protection_level": "广西重要果树",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，偶数羽状复叶，花小而成大型圆锥花序，果实黄褐色。",
+    "diet": "",
+    "features": [
+      "小叶较荔枝宽大，叶背常带粉白色",
+      "果实圆形、果皮黄褐色较光滑",
+      "种子黑亮并具白色种脐"
+    ],
+    "habitat": "丘陵、村落和果园，适应温暖湿润的南亚热带气候。",
+    "monitoring_value": "广西常见果树，可与荔枝形成近似果树对照。",
+    "similar_species": [
+      "荔枝",
+      "无患子"
+    ],
+    "review_tips": "注意果皮质地、叶背颜色和果序；不要仅凭未成熟果色判断。",
+    "tags": [
+      "果树",
+      "常绿乔木",
+      "农业生态"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "春季开花，夏秋季果实成熟",
+    "distribution": "广西多地栽培，华南和东南亚热区常见。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Dimocarpus%20longan?t=foc"
+    ],
+    "image_url": "/plants/dimocarpus_longan.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/6184934712",
+    "image_author": "Vladislav Isaev",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "cinnamomum_camphora",
+    "cn_name": "樟",
+    "latin_name": "Cinnamomum camphora",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "樟目",
+    "family": "樟科",
+    "genus": "樟属",
+    "protection_level": "广西乡土与常见植物",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，揉碎叶片有樟脑香味，叶三出脉明显，果实近球形。",
+    "diet": "",
+    "features": [
+      "叶互生、革质，基部常有三出脉",
+      "揉碎叶片有明显芳香",
+      "果实近球形，成熟时紫黑色"
+    ],
+    "habitat": "村落、道路、低山丘陵和常绿阔叶林边缘。",
+    "monitoring_value": "常见乡土芳香乔木，可用于樟科叶脉和挥发性气味特征教学。",
+    "similar_species": [
+      "阴香",
+      "天竺桂"
+    ],
+    "review_tips": "气味为辅助特征，勿频繁折叶；需结合叶脉、芽和果实判断。",
+    "tags": [
+      "樟科",
+      "芳香植物",
+      "乡土乔木"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "春末夏初开花，秋冬果熟",
+    "distribution": "广西低中海拔地区常见，华南广泛分布和栽培。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Cinnamomum%20camphora?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:Canfora,_albero_cinnamomum_camphora.jpg",
+      "https://commons.wikimedia.org/wiki/File:Cinnamomum_camphora_-_Botanic_Gardens.jpg",
+      "https://commons.wikimedia.org/wiki/File:Cinnamomum_camphora_2zz.jpg",
+      "https://commons.wikimedia.org/wiki/File:Cinnamomum_camphora_Abbott_St_New_Farm_P1400049.jpg",
+      "https://commons.wikimedia.org/wiki/File:Cinnamomum_camphora20050314.jpg",
+      "https://www.inaturalist.org/observations/384492891",
+      "https://www.inaturalist.org/observations/385112658"
+    ],
+    "image_url": "/plants/cinnamomum_camphora.jpg",
+    "image_source_url": "https://www.inaturalist.org/observations/383609425",
+    "image_author": "no rights reserved",
+    "image_license": "CC0",
+    "image_basis_of_record": "iNaturalist research-grade field photo"
+  },
+  {
+    "species_id": "pinus_massoniana",
+    "cn_name": "马尾松",
+    "latin_name": "Pinus massoniana",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "松杉目",
+    "family": "松科",
+    "genus": "松属",
+    "protection_level": "广西乡土与常见植物",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，针叶两针一束，球果卵圆形，适应瘠薄酸性土壤。",
+    "diet": "",
+    "features": [
+      "针叶通常两针一束且较长",
+      "树皮厚、深裂，呈红褐色",
+      "球果卵圆形，种鳞先端有小突起"
+    ],
+    "habitat": "丘陵、低山、荒坡和人工林，耐旱耐贫瘠。",
+    "monitoring_value": "广西常见针叶林建群树种，适合森林恢复、火险与松材线虫风险科普。",
+    "similar_species": [
+      "湿地松",
+      "火炬松"
+    ],
+    "review_tips": "记录针叶束数、球果和树皮；人工引种松类需避免混记。",
+    "tags": [
+      "针叶树",
+      "人工林",
+      "森林生态"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "春季散粉，球果次年或更晚成熟",
+    "distribution": "广西丘陵和低山广布，中国南方常见。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Pinus%20massoniana?t=foc"
+    ],
+    "image_url": "/plants/pinus_massoniana.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Pinus_massoniana,_Danxiashan_Suodao,_Guangdong,_China_1.jpg",
+    "image_author": "aaronliston",
+    "image_license": "CC BY 4.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  },
+  {
+    "species_id": "cunninghamia_lanceolata",
+    "cn_name": "杉木",
+    "latin_name": "Cunninghamia lanceolata",
+    "category": "plant",
+    "taxon_group": "裸子植物",
+    "order": "松杉目",
+    "family": "柏科",
+    "genus": "杉木属",
+    "protection_level": "广西重要用材树种",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿乔木，叶条状披针形且较硬，枝条平展，球果近球形。",
+    "diet": "",
+    "features": [
+      "叶条状披针形、先端尖硬",
+      "枝条常近平展排列",
+      "球果近球形，种鳞顶端有尖头"
+    ],
+    "habitat": "低中山湿润坡地和人工林，适宜酸性土壤。",
+    "monitoring_value": "广西重要人工林树种，可用于用材林管理和林分结构科普。",
+    "similar_species": [
+      "柳杉",
+      "水杉"
+    ],
+    "review_tips": "注意叶片硬度、排列和球果，避免与园林柳杉混淆。",
+    "tags": [
+      "用材树种",
+      "针叶树",
+      "人工林"
+    ],
+    "life_form": "常绿乔木",
+    "phenology": "春季散粉，球果秋季成熟",
+    "distribution": "广西山地广泛栽培，中国南方常见。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Cunninghamia%20lanceolata?t=foc"
+    ],
+    "image_url": "/plants/cunninghamia_lanceolata.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/5938639898",
+    "image_author": "振远 王",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "phyllostachys_edulis",
+    "cn_name": "毛竹",
+    "latin_name": "Phyllostachys edulis",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "禾本目",
+    "family": "禾本科",
+    "genus": "刚竹属",
+    "protection_level": "广西常见竹类",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "大型散生竹，竿节明显，竿箨具斑点和粗毛，地下茎横走。",
+    "diet": "",
+    "features": [
+      "竹竿粗大，节间常有白粉",
+      "竿箨具褐色斑点和粗毛",
+      "每节常有两枝以上分枝"
+    ],
+    "habitat": "山地竹林、林缘和人工经营竹林，喜湿润酸性土。",
+    "monitoring_value": "竹林生态系统主要组成，可用于竹类形态和经济利用科普。",
+    "similar_species": [
+      "桂竹",
+      "刚竹"
+    ],
+    "review_tips": "竹类种间需看竿箨、分枝和叶鞘，单张远景竹林不能可靠定种。",
+    "tags": [
+      "竹类",
+      "森林资源",
+      "禾本科"
+    ],
+    "life_form": "常绿大型竹类",
+    "phenology": "营养生长期长，开花周期不规则",
+    "distribution": "广西部分山区栽培或形成竹林，中国南方广泛分布。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Phyllostachys%20edulis?t=foc"
+    ],
+    "rejected_image_sources": [
+      "https://commons.wikimedia.org/wiki/File:\"D+E\"_carved_in_mōsō_bamboo_(Phyllostachys_edulis,_Jardim_da_Fundação_Calouste_Gulbenkian,_Lisbon,_Portugal_julesvernex2.jpg",
+      "https://www.gbif.org/occurrence/5828162339"
+    ],
+    "image_url": "/plants/phyllostachys_edulis.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/1586930826",
+    "image_author": "Aaron Liston",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "camellia_oleifera",
+    "cn_name": "油茶",
+    "latin_name": "Camellia oleifera",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "杜鹃花目",
+    "family": "山茶科",
+    "genus": "山茶属",
+    "protection_level": "广西重要经济植物",
+    "source_scope": "中国植物志数字资源",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿灌木或小乔木，叶革质，花白色，蒴果近球形，种子富含油脂。",
+    "diet": "",
+    "features": [
+      "白色花单生或数朵腋生",
+      "叶片椭圆形、边缘细锯齿",
+      "蒴果成熟后裂开，种子褐色"
+    ],
+    "habitat": "丘陵和低山酸性土壤的油茶林、疏林和林缘。",
+    "monitoring_value": "广西重要木本油料作物，可用于花果与经济林管理科普。",
+    "similar_species": [
+      "金花茶",
+      "茶树"
+    ],
+    "review_tips": "与茶树、野生山茶近似，应结合果实大小、枝叶和栽培环境。",
+    "tags": [
+      "木本油料",
+      "山茶科",
+      "经济林"
+    ],
+    "life_form": "常绿灌木或小乔木",
+    "phenology": "秋冬开花，果实次年秋季成熟",
+    "distribution": "广西丘陵山地广泛栽培，中国南方常见。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Camellia%20oleifera?t=foc"
+    ],
+    "image_url": "/plants/camellia_oleifera.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/5935410721",
+    "image_author": "王天明",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "rhizophora_stylosa",
+    "cn_name": "红海榄",
+    "latin_name": "Rhizophora stylosa",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "金虎尾目",
+    "family": "红树科",
+    "genus": "红树属",
+    "protection_level": "广西海岸湿地代表植物",
+    "source_scope": "中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿小乔木，具有发达支柱根，胎生苗细长，适应潮间带盐水浸淹。",
+    "diet": "",
+    "features": [
+      "树干基部具明显弓形支柱根",
+      "叶对生、厚革质，叶尖具小尖头",
+      "胎生苗细长如棒状并悬垂"
+    ],
+    "habitat": "北部湾潮间带泥滩、河口和海湾红树林。",
+    "monitoring_value": "红树林关键建群种，对海岸防护、蓝碳和候鸟栖息地具有重要价值。",
+    "similar_species": [
+      "秋茄",
+      "木榄"
+    ],
+    "review_tips": "拍摄时同时记录支柱根、叶尖和胎生苗；注意潮位与泥滩安全。",
+    "tags": [
+      "红树林",
+      "海岸湿地",
+      "蓝碳生态"
+    ],
+    "life_form": "常绿小乔木",
+    "phenology": "花果期受海岸气候影响，胎生苗成熟后落地生根",
+    "distribution": "广西北部湾沿岸红树林湿地有分布，热带西太平洋海岸亦常见。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Rhizophora%20stylosa?t=foc"
+    ],
+    "image_url": "/plants/rhizophora_stylosa.jpg",
+    "image_source_url": "https://www.gbif.org/occurrence/6195297420",
+    "image_author": "Zac Peterson",
+    "image_license": "http://creativecommons.org/licenses/by/4.0/",
+    "image_basis_of_record": "HUMAN_OBSERVATION"
+  },
+  {
+    "species_id": "kandelia_obovata",
+    "cn_name": "秋茄",
+    "latin_name": "Kandelia obovata",
+    "category": "plant",
+    "taxon_group": "被子植物",
+    "order": "金虎尾目",
+    "family": "红树科",
+    "genus": "秋茄属",
+    "protection_level": "广西海岸湿地代表植物",
+    "source_scope": "中国植物志数字资源；广西生态环境公开资料",
+    "source_page": null,
+    "recognition_tier": "knowledge_only",
+    "habits": "常绿灌木或小乔木，具板状根或支柱根，花白色，胎生苗棒状。",
+    "diet": "",
+    "features": [
+      "叶对生、倒卵形，叶尖钝或微凹",
+      "花白色、数朵腋生",
+      "胎生苗细长，成熟时从果实伸出"
+    ],
+    "habitat": "河口、海湾和潮沟两侧的中低潮位红树林。",
+    "monitoring_value": "广西常见红树林组成种，是海岸带恢复和湿地教育的重要对象。",
+    "similar_species": [
+      "红海榄",
+      "木榄"
+    ],
+    "review_tips": "要结合叶形、花萼和根系观察；潮间带记录必须注意潮汐和保护区管理要求。",
+    "tags": [
+      "红树林",
+      "海岸湿地",
+      "胎生植物"
+    ],
+    "life_form": "常绿灌木或小乔木",
+    "phenology": "花果期可较长，胎生苗成熟后脱落",
+    "distribution": "广西北部湾红树林湿地广布，中国东南沿海亦有分布。",
+    "source_urls": [
+      "https://www.iplant.cn/info/Kandelia%20obovata?t=foc"
+    ],
+    "image_url": "/plants/kandelia_obovata.jpg",
+    "image_source_url": "https://commons.wikimedia.org/wiki/File:Kandelia_obovata_(29989694154).jpg",
+    "image_author": "LiCheng Shih",
+    "image_license": "CC BY 2.0",
+    "image_basis_of_record": "Wikimedia Commons field photo"
+  }
+]

@@ -6,6 +6,8 @@
 
 transformers
 torch
+open_clip_torch
+accelerate
 PytorchWildlife
 supervision==0.23.0
 torchvision

@@ -1,6 +1,22 @@
-# 野外摄像头动植物识别 Demo
+# 广西动植物识别平台
 
-这是一个用于 MVP 展示的动植物识别平台 Demo，目标是演示野外摄像头图片/视频的分析流程：上传素材、检测画面中的动物目标、展示候选结果、查看知识卡片和历史记录。
+这是一个面向巡护、监测和科普场景的动植物识别平台，提供素材识别、物种知识库、图鉴浏览、生态问答助手和历史记录管理。
+
+## 双端架构
+
+- 移动使用端：`frontend/`，提供实名登录、现场识别、动植物资源中心、重点物种上报、生态助手和个人记录。
+- PC 管理端：`frontend/admin/`，提供数据总览、批量分析、专家复核、监测数据、物种资源、样本模型、统计报告和系统管理。
+- 平台 API：兼容接口保留在 `/api`，新增带 JWT/RBAC 的业务接口位于 `/api/v1`。
+- 数据与任务：本地开发可使用 SQLite 和进程内后台任务；正式部署使用 PostgreSQL、Redis/Celery 和 MinIO。
+- 物种资料统一保存在动植物知识库，通过分类、科属和保护等级筛选与浏览。
+
+完整部署可执行：
+
+```powershell
+docker compose up --build
+```
+
+启动后移动端位于 `http://localhost:8080/`，PC 管理端位于 `http://localhost:8080/admin/`。首次部署必须通过环境变量修改管理员密码和 JWT 密钥。
 
 当前项目分为两种运行状态：
 
@@ -14,24 +30,37 @@
 
 ## 当前已实现
 
-- React + Vite 多页面前端
+- React + Vite 移动端和独立 PC 管理端
 - FastAPI 后端接口
+- JWT 登录、HttpOnly 刷新会话和四角色 RBAC
+- PostgreSQL 兼容业务模型、Alembic 基线迁移和幂等旧数据迁移工具
+- Redis/Celery 异步识别任务与 MinIO 对象存储适配
+- 重点物种上报、规则自动复核入队、专家领取与乐观锁决策
+- 批量图片、视频和 ZIP 安全导入
 - 图片上传分析
 - 视频上传与抽帧分析接口
 - 目标框、置信度、裁剪图、结果表格展示
+- 检测置信度、分类置信度、Top 3 候选和人工复核状态拆分展示
 - 本地 JSON 历史记录保存与回放
-- 动物演示样本卡片
-- 植物知识库页面
-- 系统说明和能力边界页面
+- 物种知识库和参考样本联动
+- 动物物种知识库 API 和前端知识卡片
+- 参考样本目录 API 和静态预览
+- PDF 图册图片提取到待复核区，并生成元数据和联系表
+- 动物知识库、植物知识库和物种图鉴分栏展示
+- 植物知识库收录 36 个广西重点保护或代表性物种，覆盖分类、保护等级、生活型、生境、花果期、广西分布、识别特征、真实图片和资料来源
+- 36 个植物条目均已收录可追溯来源与授权信息的真实照片，不以生成图或来源不明图片替代
+- 移动端已适配首页、拍照/相册识别入口、动植物知识库、物种详情、历史记录和底部导航
+- 生态助手：默认使用本地知识库，可选接入 OpenAI 兼容大模型接口增强回答
 - 线上轻量部署版
 
 ## 页面结构
 
-- `平台总览`：展示项目概览、模块入口和当前数据概况。
-- `动物识别`：选择演示样本或上传素材，查看检测框、结果解读、会话摘要和知识卡片。
-- `植物知识库`：展示 6 个植物知识卡片，以及采集优先级、识别重点和后续接入方向。
-- `分析记录`：查看最近分析结果，支持切回动物识别页回放。
-- `系统说明`：说明当前能力边界、模型状态和后续路线。
+- `智能识别`：上传图片或视频，查看目标框、候选物种、置信度、复核提示和参考图。
+- `动物知识库`：检索动物中文名、学名、分类、保护等级、习性、食性和识别特征。
+- `植物知识库`：检索 36 个广西重点植物条目，按生活型和保护等级筛选，查看真实图片、形态、生境、花果期、广西分布、现场记录提示和权威资料来源。
+- `物种图鉴`：浏览广西重点保护野生动物口袋书图像，点击查看大图和物种资料。
+- `生态助手`：围绕识别结果、物种特征、相似物种和复核建议进行问答。
+- `识别记录`：查看最近识别结果，支持切回识别页回放和复制报告摘要。
 
 ## 模型状态
 
@@ -65,7 +94,11 @@ models/species-classifier/amazon_v2.ckpt
 ```text
 demo-deer.jpg        -> 梅花鹿
 demo-boar.jpg        -> 野猪
-demo-fox.jpg         -> 狐狸
+demo-pangolin.png    -> 中华穿山甲
+demo-leopard-cat.png -> 豹猫
+demo-black-bear.png  -> 黑熊
+demo-large-civet.png -> 大灵猫
+demo-fox.jpg         -> 赤狐
 demo-wolf.jpg        -> 狼
 demo-empty-scene.jpg -> 空场景/无动物结果
 ```
@@ -156,9 +189,29 @@ $env:VITE_API_BASE='http://82.156.50.58:5001'
 npm run build
 ```
 
+如果前后端同域部署，可以不设置 `VITE_API_BASE`，前端会默认请求同域 `/api`。
+
+生态助手可选接入 OpenAI 兼容接口，后端 `.env` 中配置：
+
+```text
+WILDLIFE_LLM_API_KEY=你的密钥
+WILDLIFE_LLM_BASE_URL=https://api.openai.com/v1/chat/completions
+WILDLIFE_LLM_MODEL=gpt-4o-mini
+```
+
+如果密钥、接口地址或模型名未配置成功，助手会自动回退到本地知识库问答。
+
 ## API
 
 - `GET /api/health`
+- `GET /api/species`
+- `GET /api/species/{species_id}`
+- `GET /api/species-catalog`
+- `GET /api/reference-samples`
+- `GET /api/reference-samples/{folder_name}`
+- `GET /api/pdf-weak-reference-samples`
+- `GET /api/knowledge-open-set-samples`
+- `POST /api/assistant/chat`
 - `POST /api/analyze/image`
 - `POST /api/analyze/video`
 - `GET /api/results`
@@ -191,6 +244,10 @@ npm run build
 - `detected_type`
 - `species_label`
 - `confidence`
+- `detection_confidence`
+- `classification_confidence`
+- `top_candidates`
+- `review_status`
 - `preview_crop_path`
 
 ## 文件存储
@@ -207,6 +264,41 @@ storage/crops/
 
 ```text
 frontend/public/demo/
+```
+
+推荐演示包见：
+
+```text
+docs/demo_pack.md
+```
+
+物种知识库和参考样本位于：
+
+```text
+backend/app/data/species_knowledge.json
+backend/app/data/plant_species_catalog.json
+reference_species/
+reference_species/待复核/
+reference_species/metadata_index.csv
+```
+
+元数据索引说明见：
+
+```text
+docs/metadata_index.md
+```
+
+初版完成度清单见：
+
+```text
+docs/initial_completion_checklist.md
+```
+
+PDF 图册素材提取流程见：
+
+```text
+docs/pdf_species_asset_pipeline.md
+docs/pdf_extraction_report_0719_guangxi.md
 ```
 
 ## 环境变量
@@ -234,22 +326,25 @@ frontend/public/demo/
 - 本地 Amazon Rainforest 分类器不适合直接承诺中国本土物种级识别。
 - 当前 88% 等数值在 fallback 模式下主要表示动物目标检测置信度，不代表物种分类置信度。
 - 植物识别模型尚未接入，植物页目前是知识库和未来接口展示。
-- 不支持保护级别自动判断、个体识别、年龄识别、性别识别。
+- 保护级别来自物种知识库关联，不代表模型能自动可靠判定物种保护等级。
+- 不支持个体识别、年龄识别、性别识别。
 - 视频分析为抽帧分析，尚未做同一动物跨帧去重。
+- PDF 提取图片默认进入 `reference_species/待复核/`，未人工确认前不作为正式样本。
 
 ## 后续计划
 
 ### 短期
 
-- 将前端结果文案进一步区分“检测置信度”和“分类置信度”。
-- 增加稳定演示样本和一键演示流程。
-- 优化上传失败、空结果、低置信度结果的提示。
+- 继续复核待复核图片，避免授权不明或物种不确定图片进入正式样本。
+- 优化上传失败、空结果、低置信度结果和样本库筛选体验。
+- 准备参赛/汇报材料，说明检测、候选分类、知识库、样本沉淀和人工复核闭环。
 
 ### 中期
 
 - 接入更适合目标区域的动物分类模型。
+- 把 `reference_species` 逐步扩充成训练集。
+- 使用 `scripts/build_species_training_manifest.py` 生成清单，进入 `scripts/train_species_classifier.py` 的迁移学习流程。
 - 接入植物识别模型或外部植物识别 API。
-- 建立物种知识库字段：中文名、拉丁名、形态特征、栖息地、保护等级、相似物种。
 - 增加人工复核状态和样本修正记录。
 
 ### 长期
