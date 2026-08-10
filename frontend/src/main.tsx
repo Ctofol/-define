@@ -28,7 +28,7 @@ import {
 } from "lucide-react";
 import "./styles.css";
 
-type Page = "overview" | "animal" | "resources" | "report" | "animalKnowledge" | "plantKnowledge" | "gallery" | "assistant" | "records" | "system";
+type Page = "animal" | "resources" | "report" | "animalKnowledge" | "plantKnowledge" | "gallery" | "assistant" | "records" | "system";
 
 type AnalysisJob = { id: string; status: string; progress: number; result_json?: AnalysisResponse | null; error_message?: string | null };
 type FieldReport = { id: string; species_name: string; status: string; final_species_name?: string | null; review_comment?: string | null; created_at: string };
@@ -194,10 +194,12 @@ type HealthResponse = {
 
 const configuredApiBase = import.meta.env.VITE_API_BASE as string | undefined;
 // 开发环境始终走 Vite 同源代理，避免手机把 127.0.0.1 解析成自身。
-const deployedApiFallback = window.location.port === "5002"
-  ? `${window.location.protocol}//${window.location.hostname}:5001`
-  : "";
-const API_BASE = import.meta.env.DEV ? "" : (configuredApiBase?.replace(/\/$/, "") || deployedApiFallback);
+const normalizedApiBase = configuredApiBase?.replace(/\/$/, "") ?? "";
+const configuredApiIsLoopback = /^https?:\/\/(localhost|127(?:\.\d{1,3}){3})(?::|\/|$)/i.test(normalizedApiBase);
+const pageIsLoopback = /^(localhost|127(?:\.\d{1,3}){3})$/i.test(window.location.hostname);
+const deployedApiFallback = pageIsLoopback ? "" : `${window.location.protocol}//${window.location.hostname}:5001`;
+const productionApiBase = configuredApiIsLoopback && !pageIsLoopback ? deployedApiFallback : normalizedApiBase || deployedApiFallback;
+const API_BASE = import.meta.env.DEV ? "" : productionApiBase;
 const MIN_KNOWLEDGE_MATCH_CONFIDENCE = 0.7;
 const CANDIDATE_DISPLAY_THRESHOLD = 0.45;
 const WILDLIFE_CATEGORIES = new Set(["animal", "bird", "reptile_amphibian", "monitoring_object"]);
@@ -368,9 +370,7 @@ function App() {
   const [authToken, setAuthToken] = React.useState("");
   const [authReady, setAuthReady] = React.useState(false);
   const [activeJobId, setActiveJobId] = React.useState<string | null>(null);
-  const [page, setPage] = React.useState<Page>(() =>
-    window.matchMedia("(max-width: 860px)").matches ? "overview" : "animal",
-  );
+  const [page, setPage] = React.useState<Page>("animal");
   const [file, setFile] = React.useState<File | null>(null);
   const [localPreview, setLocalPreview] = React.useState<string | null>(null);
   const [confidence, setConfidence] = React.useState(0.35);
@@ -507,7 +507,7 @@ function App() {
     setAuthToken(payload.access_token);
     setAccount(payload.user.display_name);
     setIsAuthenticated(true);
-    setPage(window.matchMedia("(max-width: 860px)").matches ? "overview" : "animal");
+    setPage("animal");
   }
 
   async function logout() {
@@ -547,19 +547,9 @@ function App() {
         </button>
       </aside>
 
-      <MobileHeader account={account} onHome={() => setPage("overview")} onLogout={logout} />
+      <MobileHeader account={account} onHome={() => setPage("animal")} onLogout={logout} />
 
       <section className={`page page-${page}`}>
-        {page === "overview" ? (
-          <OverviewPage
-            history={history}
-            result={result}
-            setPage={setPage}
-            speciesCount={catalogSpecies.length}
-            referenceCount={referenceSpecies.length + pdfWeakReferenceSpecies.length + openSetReferenceSpecies.length}
-            modelStatus={modelStatus}
-          />
-        ) : null}
         {page === "animal" ? (
           <AnimalPage
             file={file}
@@ -609,7 +599,7 @@ function App() {
 function MobileHeader({ account, onHome, onLogout }: { account: string; onHome: () => void; onLogout: () => void }) {
   return (
     <header className="mobile-header">
-      <button className="mobile-brand" type="button" onClick={onHome} aria-label="返回首页">
+      <button className="mobile-brand" type="button" onClick={onHome} aria-label="返回识别">
         <span className="mobile-brand-mark"><Leaf size={18} /></span>
         <span>
           <strong>森智眼</strong>
@@ -625,9 +615,9 @@ function MobileHeader({ account, onHome, onLogout }: { account: string; onHome: 
 
 function MobileNavigation({ page, onChange }: { page: Page; onChange: (page: Page) => void }) {
   const items: Array<{ page: Page; label: string; icon: React.ReactNode }> = [
-    { page: "animal", label: "识别", icon: <Camera size={20} /> },
     { page: "resources", label: "资源", icon: <BookOpen size={20} /> },
     { page: "report", label: "上报", icon: <ShieldCheck size={20} /> },
+    { page: "animal", label: "识别", icon: <Camera size={25} /> },
     { page: "assistant", label: "助手", icon: <Bot size={20} /> },
     { page: "records", label: "记录", icon: <History size={20} /> },
   ];
@@ -643,12 +633,12 @@ function MobileNavigation({ page, onChange }: { page: Page; onChange: (page: Pag
         <button
           key={item.page}
           type="button"
-          className={page === item.page ? "active" : ""}
+          className={`${item.page === "animal" ? "primary-tab" : ""} ${page === item.page ? "active" : ""}`.trim()}
           aria-current={page === item.page ? "page" : undefined}
           onClick={() => changePage(item.page)}
         >
-          {item.icon}
-          <span>{item.label}</span>
+          <span className="mobile-tab-icon">{item.icon}</span>
+          <span className="mobile-tab-label">{item.label}</span>
         </button>
       ))}
     </nav>
@@ -828,13 +818,13 @@ function ResourceCenterPage({
   openSetReferenceSpecies: ReferenceSpecies[];
 }) {
   const [section, setSection] = React.useState<"animals" | "plants">("animals");
-  return <>
-    <PageHeader eyebrow="物种资源中心" title="动植物知识库" subtitle="按名称、学名、分类和保护等级集中查询物种资料。" />
-    <div className="mobile-resource-tabs" role="tablist">
+    return <>
+      <PageHeader eyebrow="物种资源中心" title="动植物知识库" subtitle="按名称、学名、分类和保护等级集中查询物种资料。" />
+      <div className="mobile-resource-tabs" role="tablist" data-section={section}>
       <button className={section === "animals" ? "active" : ""} onClick={() => setSection("animals")}>动物知识库</button>
       <button className={section === "plants" ? "active" : ""} onClick={() => setSection("plants")}>植物知识库</button>
     </div>
-    <KnowledgeLibraryPage view={section} animalSpecies={animalSpecies} pdfWeakReferenceSpecies={pdfWeakReferenceSpecies} openSetReferenceSpecies={openSetReferenceSpecies} />
+      <KnowledgeLibraryPage view={section} animalSpecies={animalSpecies} pdfWeakReferenceSpecies={pdfWeakReferenceSpecies} openSetReferenceSpecies={openSetReferenceSpecies} />
   </>;
 }
 
@@ -951,13 +941,17 @@ function KnowledgeLibraryPage({
 }) {
   const [query, setQuery] = React.useState("");
   const [protectionFilter, setProtectionFilter] = React.useState<"all" | "level1" | "level2">("all");
-  const [tierFilter, setTierFilter] = React.useState<"all" | "priority" | "candidate" | "operational">("all");
   const [plantLifeFormFilter, setPlantLifeFormFilter] = React.useState("all");
+  const [animalPage, setAnimalPage] = React.useState(1);
   const [visibleKnowledgeCount, setVisibleKnowledgeCount] = React.useState(24);
   const [visiblePdfCount, setVisiblePdfCount] = React.useState(48);
   const [selectedGuideEntry, setSelectedGuideEntry] = React.useState<ReferenceSpecies | null>(null);
   const [selectedKnowledgeEntry, setSelectedKnowledgeEntry] = React.useState<KnowledgeEntry | null>(null);
-  const animalEntries = sortSpecies(animalSpecies.filter(isWildlifeCatalogSpecies)).map(speciesToKnowledgeEntry);
+  const knowledgeListRef = React.useRef<HTMLElement | null>(null);
+  const referenceSpecies = [...pdfWeakReferenceSpecies, ...openSetReferenceSpecies];
+  const animalEntries = sortSpecies(animalSpecies.filter(isWildlifeCatalogSpecies))
+    .map(speciesToKnowledgeEntry)
+    .map((entry) => withReferenceImage(entry, animalSpecies, referenceSpecies));
   const plantEntries = sortSpecies(animalSpecies.filter((entry) => entry.category === "plant")).map(speciesToKnowledgeEntry);
   const plantLifeForms = Array.from(new Set(plantEntries.map((entry) => entry.lifeForm).filter(Boolean) as string[]))
     .sort((left, right) => left.localeCompare(right, "zh-Hans-CN"));
@@ -970,21 +964,23 @@ function KnowledgeLibraryPage({
   const filteredAnimals = view === "animals"
     ? animalEntries
       .filter((entry) => matchesKnowledgeFilters(entry, query, protectionFilter))
-      .filter((entry) => matchesAnimalTier(entry, tierFilter))
     : [];
   const filteredPlants = view === "plants"
     ? plantEntries
       .filter((entry) => matchesKnowledgeFilters(entry, query, protectionFilter))
       .filter((entry) => plantLifeFormFilter === "all" || entry.lifeForm === plantLifeFormFilter)
     : [];
-  const visibleAnimals = filteredAnimals.slice(0, visibleKnowledgeCount);
+  const animalGroupPageSize = 6;
   const visiblePlants = filteredPlants.slice(0, visibleKnowledgeCount);
   const priorityAnimals = filteredAnimals.filter((entry) => entry.protectionLevel?.includes("一级"));
   const secondaryAnimals = filteredAnimals.filter((entry) => !entry.protectionLevel?.includes("一级") && entry.protectionLevel?.includes("二级"));
   const operationalAnimals = filteredAnimals.filter((entry) => !entry.protectionLevel?.includes("一级") && !entry.protectionLevel?.includes("二级"));
-  const visiblePriorityAnimals = visibleAnimals.filter((entry) => entry.protectionLevel?.includes("一级"));
-  const visibleSecondaryAnimals = visibleAnimals.filter((entry) => !entry.protectionLevel?.includes("一级") && entry.protectionLevel?.includes("二级"));
-  const visibleOperationalAnimals = visibleAnimals.filter((entry) => !entry.protectionLevel?.includes("一级") && !entry.protectionLevel?.includes("二级"));
+  const animalPageCount = Math.max(1, ...[priorityAnimals, secondaryAnimals, operationalAnimals].map((entries) => Math.ceil(entries.length / animalGroupPageSize)));
+  const animalPageStart = (animalPage - 1) * animalGroupPageSize;
+  const animalPageEnd = animalPage * animalGroupPageSize;
+  const visiblePriorityAnimals = priorityAnimals.slice(animalPageStart, animalPageEnd);
+  const visibleSecondaryAnimals = secondaryAnimals.slice(animalPageStart, animalPageEnd);
+  const visibleOperationalAnimals = operationalAnimals.slice(animalPageStart, animalPageEnd);
   const directRecognitionAnimals = filteredAnimals.filter((entry) => DIRECT_RECOGNITION_TIERS.has(entry.recognitionTier ?? ""));
   const referenceOnlyAnimals = filteredAnimals.length - directRecognitionAnimals.length;
   const protectedPlants = plantEntries.filter((entry) => entry.protectionLevel?.includes("一级") || entry.protectionLevel?.includes("二级"));
@@ -992,9 +988,11 @@ function KnowledgeLibraryPage({
   const resultCount = view === "gallery"
     ? catalogEntries.length
     : filteredAnimals.length + filteredPlants.length;
-  const displayedKnowledgeCount = view === "animals" ? visibleAnimals.length : visiblePlants.length;
+  const displayedKnowledgeCount = view === "animals"
+    ? visiblePriorityAnimals.length + visibleSecondaryAnimals.length + visibleOperationalAnimals.length
+    : visiblePlants.length;
   const activeKnowledgeCount = view === "animals" ? filteredAnimals.length : filteredPlants.length;
-  const hasActiveFilters = Boolean(query.trim()) || protectionFilter !== "all" || (view === "animals" && tierFilter !== "all") || (view === "plants" && plantLifeFormFilter !== "all");
+  const hasActiveFilters = Boolean(query.trim()) || protectionFilter !== "all" || (view === "plants" && plantLifeFormFilter !== "all");
   const pageCopy = {
     animals: {
       eyebrow: "动物知识库",
@@ -1016,28 +1014,33 @@ function KnowledgeLibraryPage({
   function resetFilters() {
     setQuery("");
     setProtectionFilter("all");
-    setTierFilter("all");
     setPlantLifeFormFilter("all");
+    setAnimalPage(1);
     setVisibleKnowledgeCount(24);
     setVisiblePdfCount(48);
   }
 
+  function changeAnimalPage(nextPage: number) {
+    setAnimalPage(Math.min(Math.max(nextPage, 1), animalPageCount));
+    window.setTimeout(() => {
+      knowledgeListRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 60);
+  }
+
   React.useEffect(() => {
+    setAnimalPage(1);
     setVisibleKnowledgeCount(24);
     setVisiblePdfCount(48);
-  }, [view, query, protectionFilter, tierFilter, plantLifeFormFilter]);
+  }, [view, query, protectionFilter, plantLifeFormFilter]);
+
+  React.useEffect(() => {
+    if (animalPage > animalPageCount) setAnimalPage(animalPageCount);
+  }, [animalPage, animalPageCount]);
 
   return (
     <>
       <PageHeader eyebrow={pageCopy.eyebrow} title={pageCopy.title} subtitle={pageCopy.subtitle} />
       <section className="knowledge-toolbar">
-        {view === "animals" ? (
-          <div className="knowledge-switch" role="tablist" aria-label="识别层级">
-            <button type="button" className={tierFilter === "all" ? "active" : ""} onClick={() => setTierFilter("all")}>全部层级</button>
-            <button type="button" className={tierFilter === "priority" ? "active" : ""} onClick={() => setTierFilter("priority")}>一级优先</button>
-            <button type="button" className={tierFilter === "candidate" ? "active" : ""} onClick={() => setTierFilter("candidate")}>候选识别</button>
-          </div>
-        ) : null}
         {view === "plants" ? (
           <label className="filter-field">
             <span>生活型</span>
@@ -1111,15 +1114,15 @@ function KnowledgeLibraryPage({
             </div>
             <div className="summary-pill">
               <strong>{operationalAnimals.length}</strong>
-              <span>补充条目</span>
+              <span>其他物种</span>
             </div>
             <div className="summary-pill">
               <strong>{directRecognitionAnimals.length}</strong>
-              <span>可直接识别</span>
+              <span>识别覆盖</span>
             </div>
             <div className="summary-pill">
               <strong>{referenceOnlyAnimals}</strong>
-              <span>图鉴参考</span>
+              <span>参考条目</span>
             </div>
             <div className="summary-pill">
               <strong>{displayedKnowledgeCount}/{activeKnowledgeCount}</strong>
@@ -1234,25 +1237,32 @@ function KnowledgeLibraryPage({
           onClose={() => setSelectedGuideEntry(null)}
         />
       ) : null}
-      {view === "animals" ? <section className="section-head">
+      {view === "animals" ? <section className="section-head knowledge-list-head" ref={knowledgeListRef}>
         <div>
-          <span className="eyebrow">动物重点物种</span>
-          <h3>按保护等级和识别优先级分层浏览</h3>
+              <h3>知识库浏览</h3>
         </div>
       </section> : null}
-      {view === "animals" ? <section className="plant-grid">
-        {visiblePriorityAnimals.length ? visiblePriorityAnimals.map((entry) => <KnowledgeCard key={`${entry.title}-${entry.latin}`} entry={entry} onOpen={() => setSelectedKnowledgeEntry(entry)} />) : null}
-      </section> : null}
+      {view === "animals" && visiblePriorityAnimals.length ? (
+        <>
+          <section className="section-head">
+            <div>
+              <h3>国家一级保护物种</h3>
+            </div>
+          </section>
+          <section className="plant-grid">
+            {visiblePriorityAnimals.map((entry) => <KnowledgeCard key={`${entry.title}-${entry.latin}`} entry={entry} onOpen={() => setSelectedKnowledgeEntry(entry)} hideProtectionLabels />)}
+          </section>
+        </>
+      ) : null}
       {view === "animals" && visibleSecondaryAnimals.length ? (
         <>
           <section className="section-head">
             <div>
-              <span className="eyebrow">国家二级</span>
-              <h3>候选识别与复核重点</h3>
+              <h3>国家二级保护物种</h3>
             </div>
           </section>
           <section className="plant-grid">
-            {visibleSecondaryAnimals.map((entry) => <KnowledgeCard key={`${entry.title}-${entry.latin}`} entry={entry} onOpen={() => setSelectedKnowledgeEntry(entry)} />)}
+            {visibleSecondaryAnimals.map((entry) => <KnowledgeCard key={`${entry.title}-${entry.latin}`} entry={entry} onOpen={() => setSelectedKnowledgeEntry(entry)} hideProtectionLabels />)}
           </section>
         </>
       ) : null}
@@ -1260,8 +1270,7 @@ function KnowledgeLibraryPage({
         <>
           <section className="section-head">
             <div>
-              <span className="eyebrow">补充条目</span>
-              <h3>监测对照和场景类对象</h3>
+              <h3>其他动物物种</h3>
             </div>
           </section>
           <section className="plant-grid">
@@ -1270,18 +1279,17 @@ function KnowledgeLibraryPage({
         </>
       ) : null}
       {view === "animals" ? (
-        <LoadMoreControl
-          visible={visibleAnimals.length}
-          total={filteredAnimals.length}
+        <KnowledgePager
+          current={animalPage}
+          pageCount={animalPageCount}
+          summary={`${animalPage} / ${animalPageCount} 页，每个等级最多 ${animalGroupPageSize} 项`}
           label="动物知识卡"
-          step={24}
-          onLoadMore={() => setVisibleKnowledgeCount((count) => count + 24)}
+          onChange={changeAnimalPage}
         />
       ) : null}
       {view === "animals" && !filteredAnimals.length ? <EmptyState text="暂无匹配的动物知识条目" /> : null}
       {view === "plants" ? <section className="section-head">
         <div>
-          <span className="eyebrow">植物知识模块</span>
           <h3>植物条目查询与采集要点</h3>
         </div>
       </section> : null}
@@ -1332,22 +1340,36 @@ function EcologyAssistantPage({
   result: AnalysisResponse | null;
 }) {
   const [question, setQuestion] = React.useState("");
-  const [contextSpeciesId, setContextSpeciesId] = React.useState("");
-  const [turns, setTurns] = React.useState<AssistantTurn[]>([]);
+  const [turns, setTurns] = React.useState<AssistantTurn[]>(() => {
+    try {
+      const saved = window.localStorage.getItem("ecology-assistant-turns");
+      return saved ? (JSON.parse(saved) as AssistantTurn[]).slice(-30) : [];
+    } catch {
+      return [];
+    }
+  });
   const [isAsking, setIsAsking] = React.useState(false);
+  const [pendingQuestion, setPendingQuestion] = React.useState("");
   const [error, setError] = React.useState<string | null>(null);
+  const messagesRef = React.useRef<HTMLDivElement>(null);
   const firstDetection = result?.detections[0];
   const mappedDetection = firstDetection ? mapDetectionToKnowledge(firstDetection, speciesKnowledge) : null;
   const suggestedSpeciesId = mappedDetection?.species?.species_id ?? "";
-  const activeContextId = contextSpeciesId || undefined;
-  const latest = turns[0]?.response;
-  const latestTurn = turns[0];
-  const historyTurns = turns.slice(1);
+
+  React.useEffect(() => {
+    window.localStorage.setItem("ecology-assistant-turns", JSON.stringify(turns.slice(-30)));
+  }, [turns]);
+
+  React.useEffect(() => {
+    messagesRef.current?.scrollTo({ top: messagesRef.current.scrollHeight, behavior: "smooth" });
+  }, [turns, pendingQuestion]);
 
   async function ask(nextQuestion?: string) {
     const text = (nextQuestion ?? question).trim();
     if (!text || isAsking) return;
     setIsAsking(true);
+    setPendingQuestion(text);
+    setQuestion("");
     setError(null);
     try {
       const response = await fetch(`${API_BASE}/api/assistant/chat`, {
@@ -1355,8 +1377,8 @@ function EcologyAssistantPage({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           question: text,
-          context_species_id: activeContextId,
-          messages: turns.slice(0, 6).flatMap((turn) => [
+          context_species_id: suggestedSpeciesId || undefined,
+          messages: turns.slice(-6).flatMap((turn) => [
             { role: "user", content: turn.question },
             { role: "assistant", content: turn.response.answer },
           ]),
@@ -1364,12 +1386,13 @@ function EcologyAssistantPage({
       });
       if (!response.ok) throw new Error(await response.text());
       const payload = (await response.json()) as AssistantChatResponse;
-      setTurns((items) => [{ question: text, response: payload }, ...items].slice(0, 8));
-      setQuestion("");
+      setTurns((items) => [...items, { question: text, response: payload }].slice(-30));
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "助手暂时不可用");
+      setQuestion(text);
     } finally {
       setIsAsking(false);
+      setPendingQuestion("");
     }
   }
 
@@ -1383,97 +1406,62 @@ function EcologyAssistantPage({
     setError(null);
   }
 
+  function handleComposerKeyDown(event: React.KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      void ask();
+    }
+  }
+
   return (
     <>
       <PageHeader eyebrow="生态助手" title="生态知识问答助手" subtitle="基于本地物种知识库解释识别结果、物种特征、相似物种和复核建议。" />
-      <section className="assistant-layout">
-        <aside className="assistant-compose card">
-          <div className="card-title">
-            <Sparkles size={18} />
-            <span>提问</span>
+      <section className="assistant-chat">
+        <header className="assistant-chat-header">
+          <div className="assistant-chat-identity">
+            <span><Bot size={20} /></span>
+            <div><strong>生态助手</strong><small>{mappedDetection ? `已关联 ${mappedDetection.label}` : "生态知识库在线"}</small></div>
           </div>
-          <form onSubmit={submit}>
-            <label className="filter-field">
-              <span>关联物种</span>
-              <select value={contextSpeciesId} onChange={(event) => setContextSpeciesId(event.target.value)}>
-                <option value="">{suggestedSpeciesId ? "使用当前识别候选" : "自动匹配问题"}</option>
-                {sortSpecies(speciesKnowledge).map((species) => (
-                  <option key={species.species_id} value={species.species_id}>
-                    {species.cn_name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="assistant-question">
-              <span>问题</span>
-              <textarea
-                value={question}
-                onChange={(event) => setQuestion(event.target.value)}
-                placeholder="例如：大灵猫有哪些稳定识别特征？黑熊结果为什么需要复核？"
-                rows={7}
-              />
-            </label>
-            <button className="primary" type="submit" disabled={!question.trim() || isAsking}>
-              {isAsking ? <Loader2 size={18} className="spin" /> : <Send size={18} />}
-              <span>{isAsking ? "生成中" : "发送问题"}</span>
-            </button>
-            <button className="secondary-action" type="button" disabled={!question.trim()} onClick={() => setQuestion("")}>
-              <X size={16} />
-              <span>清空输入</span>
-            </button>
-          </form>
-          {error ? <p className="error">{error}</p> : null}
-          <div className="quick-question-list">
-            {(latest?.suggested_questions ?? [
-              "识别结果置信度低时应该怎么处理？",
-              "大灵猫和相似物种怎么区分？",
-              "知识库里的保护等级怎么看？",
-            ]).map((item) => (
-              <button key={item} type="button" onClick={() => ask(item)}>
-                {item}
-              </button>
-            ))}
-          </div>
-        </aside>
-        <main className="assistant-main">
-          <section className="assistant-status-grid">
-            <MetricCard label="知识来源" value={`${speciesKnowledge.length} 条`} hint="本地物种知识库" />
-            <MetricCard label="回答模式" value="知识库问答" hint="基于本地物种资料生成" />
-            <MetricCard label="识别联动" value={mappedDetection?.label ?? "待识别"} hint="可结合当前候选解释" />
-          </section>
-          {latestTurn ? (
-            <section className="assistant-session">
-              <div className="assistant-session-bar">
-                <div>
-                  <strong>当前会话</strong>
-                  <span>{turns.length} 条问答，历史内容已折叠</span>
+          <button type="button" onClick={clearConversation} disabled={!turns.length} aria-label="清空聊天记录" title="清空聊天记录"><Trash2 size={18} /></button>
+        </header>
+
+        <div className="assistant-chat-messages" ref={messagesRef} aria-live="polite">
+          {!turns.length && !pendingQuestion ? (
+            <div className="chat-row assistant">
+              <span className="chat-avatar"><Bot size={18} /></span>
+              <div className="chat-bubble">你好，我是生态助手。你可以直接询问物种识别、生活习性、保护等级或复核相关问题。</div>
+            </div>
+          ) : null}
+          {turns.map((turn, index) => (
+            <React.Fragment key={`${turn.question}-${index}`}>
+              <div className="chat-row user"><div className="chat-bubble">{turn.question}</div></div>
+              <div className="chat-row assistant">
+                <span className="chat-avatar"><Bot size={18} /></span>
+                <div className="chat-bubble chat-answer">
+                  <p>{turn.response.answer}</p>
+                  {turn.response.review_notice ? <small>{turn.response.review_notice}</small> : null}
                 </div>
-                <button className="secondary-action compact-action" type="button" onClick={clearConversation}>
-                  <Trash2 size={16} />
-                  <span>清空会话</span>
-                </button>
               </div>
-              <section className="assistant-turns">
-                <AssistantAnswerCard turn={latestTurn} />
-                {historyTurns.length ? (
-                  <div className="assistant-history-list">
-                    {historyTurns.map((turn, index) => (
-                      <details className="assistant-history-item" key={`${turn.question}-${index}`}>
-                        <summary>
-                          <span>历史问题</span>
-                          <strong>{turn.question}</strong>
-                        </summary>
-                        <AssistantAnswerCard turn={turn} compact />
-                      </details>
-                    ))}
-                  </div>
-                ) : null}
-              </section>
-            </section>
-          ) : (
-            <EmptyState icon={<Bot size={44} />} text="选择一个快捷问题，或输入物种特征、识别结果、复核判断相关问题。" />
-          )}
-        </main>
+            </React.Fragment>
+          ))}
+          {pendingQuestion ? (
+            <>
+              <div className="chat-row user"><div className="chat-bubble">{pendingQuestion}</div></div>
+              <div className="chat-row assistant">
+                <span className="chat-avatar"><Bot size={18} /></span>
+                <div className="chat-bubble chat-typing"><i /><i /><i /></div>
+              </div>
+            </>
+          ) : null}
+        </div>
+
+        {error ? <p className="assistant-chat-error">发送失败：{error}</p> : null}
+        <form className="assistant-chat-composer" onSubmit={submit}>
+          <textarea value={question} onChange={(event) => setQuestion(event.target.value)} onKeyDown={handleComposerKeyDown} placeholder="发消息..." rows={1} aria-label="输入消息" />
+          <button type="submit" disabled={!question.trim() || isAsking} aria-label="发送消息">
+            {isAsking ? <Loader2 size={20} className="spin" /> : <Send size={20} />}
+          </button>
+        </form>
       </section>
     </>
   );
@@ -1526,8 +1514,6 @@ function RecordsPage({
   const [reviewFilter, setReviewFilter] = React.useState<"all" | "ready" | "review" | "empty">("all");
   const [confidenceFilter, setConfidenceFilter] = React.useState<"all" | "high" | "medium" | "low">("all");
   const [recordSort, setRecordSort] = React.useState<"newest" | "oldest" | "confidence_desc" | "confidence_asc">("newest");
-  const imageCount = history.filter((item) => item.media_type === "image").length;
-  const videoCount = history.filter((item) => item.media_type === "video").length;
   const latest = history[0];
   const latestSummary = latest ? buildReportSummary(latest, speciesKnowledge) : "";
   const [detailEntry, setDetailEntry] = React.useState<KnowledgeEntry | null>(null);
@@ -1560,21 +1546,44 @@ function RecordsPage({
     resetHistoryView();
   }, [history.length, recordQuery, mediaFilter, reviewFilter, confidenceFilter, recordSort]);
 
+  function setQuickFilter(filter: "all" | "image" | "video" | "review" | "high") {
+    setMediaFilter(filter === "image" || filter === "video" ? filter : "all");
+    setReviewFilter(filter === "review" ? "review" : "all");
+    setConfidenceFilter(filter === "high" ? "high" : "all");
+    setRecordSort("newest");
+  }
+
+  const activeQuickFilter =
+    mediaFilter === "image" && reviewFilter === "all" && confidenceFilter === "all" ? "image" :
+    mediaFilter === "video" && reviewFilter === "all" && confidenceFilter === "all" ? "video" :
+    reviewFilter === "review" && mediaFilter === "all" && confidenceFilter === "all" ? "review" :
+    confidenceFilter === "high" && mediaFilter === "all" && reviewFilter === "all" ? "high" :
+    "all";
+
   return (
     <>
-      <PageHeader eyebrow="识别记录" title="历史识别任务" subtitle="集中回看识别结果、复核状态和任务摘要，便于持续管理识别记录。" />
+      <PageHeader eyebrow="识别记录" title="历史识别任务" subtitle="" />
       <section className="records-shell">
         <div className="records-main">
-          <section className="card records-summary">
-            <div className="card-title"><History size={18} /><span>记录概览</span></div>
-            <div className="summary-grid">
-              <MetricCard label="记录总数" value={String(history.length)} hint="本地保存的识别结果" />
-              <MetricCard label="图片任务" value={String(imageCount)} hint="上传图片后保存的任务" />
-              <MetricCard label="视频任务" value={String(videoCount)} hint="上传视频后保存的任务" />
-            </div>
-            <p className="summary-note">{latest ? `最新一条结果：${latest.message}` : "当前还没有历史记录，上传一张图就会出现这里。"}</p>
-          </section>
           <section className="records-list-panel">
+            <div className="records-quick-tabs">
+              {[
+                ["all", "全部"],
+                ["image", "图片"],
+                ["video", "视频"],
+                ["review", "需复核"],
+                ["high", "高置信"],
+              ].map(([value, label]) => (
+                <button
+                  type="button"
+                  key={value}
+                  className={activeQuickFilter === value ? "active" : ""}
+                  onClick={() => setQuickFilter(value as "all" | "image" | "video" | "review" | "high")}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
             <div className="records-filter-bar">
               <label className="search-field">
                 <span>搜索记录</span>
@@ -2490,6 +2499,48 @@ function LoadMoreControl({
   );
 }
 
+function KnowledgePager({
+  current,
+  pageCount,
+  summary,
+  label,
+  onChange,
+}: {
+  current: number;
+  pageCount: number;
+  summary: string;
+  label: string;
+  onChange: (page: number) => void;
+}) {
+  if (pageCount <= 1) return null;
+  const pages = buildKnowledgePageItems(current, pageCount);
+  return (
+    <nav className="knowledge-pager" aria-label={`${label}分页`}>
+      <span>{summary}</span>
+      <div>
+        <button type="button" disabled={current <= 1} onClick={() => onChange(current - 1)}>上一页</button>
+          {pages.map((page, index) => page === "gap"
+            ? <i key={`gap-${index}`}>…</i>
+            : <button key={page} type="button" className={page === current ? "active" : ""} onClick={() => onChange(page)}>{page}</button>
+          )}
+        <button type="button" disabled={current >= pageCount} onClick={() => onChange(current + 1)}>下一页</button>
+      </div>
+    </nav>
+  );
+}
+
+function buildKnowledgePageItems(current: number, pageCount: number): Array<number | "gap"> {
+  const pages = new Set<number>([1, pageCount]);
+  for (let page = current - 1; page <= current + 1; page += 1) {
+    if (page >= 1 && page <= pageCount) pages.add(page);
+  }
+  const sorted = [...pages].sort((left, right) => left - right);
+  return sorted.flatMap((page, index) => {
+    const previous = sorted[index - 1];
+    return previous && page - previous > 1 ? ["gap" as const, page] : [page];
+  });
+}
+
 function SideRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="side-row">
@@ -2499,9 +2550,17 @@ function SideRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function KnowledgeCard({ entry, onOpen }: { entry: KnowledgeEntry; onOpen: () => void }) {
-  const visibleTags = entry.tags.slice(0, 3);
-  const hiddenTags = entry.tags.slice(3);
+function KnowledgeCard({ entry, onOpen, hideProtectionLabels = false }: { entry: KnowledgeEntry; onOpen: () => void; hideProtectionLabels?: boolean }) {
+  const normalizeTag = (tag: string) => tag.replace(/\s+/g, "").trim();
+  const normalizedProtectionLevel = normalizeTag(entry.protectionLevel ?? "");
+  const cardTags = entry.tags.filter((tag, index, tags) => {
+    const normalizedTag = normalizeTag(tag);
+    if (normalizedProtectionLevel && normalizedTag === normalizedProtectionLevel) return false;
+    if (hideProtectionLabels && /(?:国家)?[一二]级|[一二]级.*保护/.test(normalizedTag)) return false;
+    return tags.findIndex((candidate) => normalizeTag(candidate) === normalizedTag) === index;
+  });
+  const visibleTags = cardTags.slice(0, 3);
+  const hiddenTags = cardTags.slice(3);
   const primaryFeatures = entry.features.slice(0, 2);
   const summary = entry.habitat || entry.monitoringValue || catalogFallbackSummary(entry);
 
@@ -2518,13 +2577,13 @@ function KnowledgeCard({ entry, onOpen }: { entry: KnowledgeEntry; onOpen: () =>
         }
       }}
     >
-      {entry.imageUrl ? <div className="knowledge-card-image"><img src={entry.imageUrl} alt={`${entry.title}植物照片`} loading="lazy" /></div> : null}
+      {entry.imageUrl ? <div className="knowledge-card-image"><img src={entry.imageUrl} alt={`${entry.title}物种照片`} loading="lazy" /></div> : null}
       <div className="knowledge-card-head">
         <div>
           <h3>{entry.title}</h3>
           <p className="latin">{entry.latin}</p>
         </div>
-        {entry.protectionLevel ? <span className="protection-badge">{entry.protectionLevel.replace("国家", "")}</span> : null}
+        {!hideProtectionLabels && entry.protectionLevel ? <span className="protection-badge">{entry.protectionLevel.replace("国家", "")}</span> : null}
       </div>
       <div className="knowledge-meta">
         {entry.category ? <span>{formatTaxonomy(entry)}</span> : null}
@@ -3133,6 +3192,20 @@ function findReferenceForSpecies(species: SpeciesEntry, references: ReferenceSpe
       preferredNames.some((name) => matchesReference(name, reference))
     ) ?? null
   );
+}
+
+function withReferenceImage(entry: KnowledgeEntry, speciesKnowledge: SpeciesEntry[], references: ReferenceSpecies[]): KnowledgeEntry {
+  if (entry.imageUrl || entry.category === "plant") return entry;
+  const species = findSpeciesForKnowledgeEntry(entry, speciesKnowledge);
+  const reference = species ? findReferenceForSpecies(species, references) : null;
+  const coverUrl = reference?.cover_url;
+  if (!coverUrl) return entry;
+  return {
+    ...entry,
+    imageUrl: coverUrl.startsWith("http") ? coverUrl : `${API_BASE}${coverUrl}`,
+    imageAuthor: reference.samples[0]?.author ?? entry.imageAuthor,
+    imageLicense: reference.samples[0]?.license ?? entry.imageLicense,
+  };
 }
 
 function findMatchedSpecies(candidates: string[], speciesKnowledge: SpeciesEntry[]): SpeciesEntry | undefined {

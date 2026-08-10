@@ -39,6 +39,30 @@ def test_login_me_and_feature_flags() -> None:
     assert features.json()["plant_recognition"] is False
 
 
+def test_species_import_template_can_be_downloaded_and_imported() -> None:
+    headers = login()
+    before = client.get("/api/v1/species", headers=headers).json()["species_count"]
+    template = client.get("/api/v1/admin/species/import-template", headers=headers)
+    assert template.status_code == 200
+    assert template.headers["content-disposition"] == 'attachment; filename="species-import-template.json"'
+    payload = template.json()
+    assert payload["species"][0]["species_id"] == "example_species"
+
+    imported = client.post(
+        "/api/v1/admin/species/import",
+        headers=headers,
+        files={"file": ("species-import-template.json", template.content, "application/json")},
+    )
+    assert imported.status_code == 200, imported.text
+    assert imported.json()["total"] == 1
+    assert client.get("/api/v1/species", headers=headers).json()["species_count"] == before + 1
+
+    deleted = client.delete("/api/v1/admin/species/example_species", headers=headers)
+    assert deleted.status_code == 200
+    assert client.get("/api/v1/species", headers=headers).json()["species_count"] == before
+    assert client.get("/api/v1/species/example_species", headers=headers).status_code == 404
+
+
 def test_field_report_automatically_enters_review_queue() -> None:
     admin_headers = login()
     created = client.post(
@@ -57,6 +81,22 @@ def test_field_report_automatically_enters_review_queue() -> None:
     reviews = client.get("/api/v1/admin/reviews?review_status=pending", headers=admin_headers)
     assert reviews.status_code == 200
     assert any(item["report_id"] == report.json()["id"] for item in reviews.json())
+
+
+def test_admin_reports_are_split_by_report_type() -> None:
+    admin_headers = login()
+    overview = client.get("/api/v1/admin/reports/overview", headers=admin_headers)
+    assert overview.status_code == 200
+    assert set(overview.json()) == {"patrol", "species", "annual"}
+    exports = [
+        ("/api/v1/admin/reports/patrol.csv", "任务ID"),
+        ("/api/v1/admin/reports/species.csv", "物种名称"),
+        ("/api/v1/admin/reports/annual.csv", "月份"),
+    ]
+    for path, header in exports:
+        response = client.get(path, headers=admin_headers)
+        assert response.status_code == 200, response.text
+        assert header in response.text
 
 
 def test_role_enforcement_and_coordinate_validation() -> None:

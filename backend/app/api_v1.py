@@ -261,9 +261,15 @@ def species_catalog(
     user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
 ) -> SpeciesCatalogResponse:
-    stored = list(db.scalars(select(SpeciesResource).where(SpeciesResource.is_deleted.is_(False)).order_by(SpeciesResource.species_id)))
-    species = [SpeciesEntry.model_validate(item.payload) for item in stored] if stored else get_species_catalog_service().list_species(category=category)
-    if category and stored:
+    stored = list(db.scalars(select(SpeciesResource).order_by(SpeciesResource.species_id)))
+    merged = {entry.species_id: entry for entry in get_species_catalog_service().list_species()}
+    for item in stored:
+        if item.is_deleted:
+            merged.pop(item.species_id, None)
+        else:
+            merged[item.species_id] = SpeciesEntry.model_validate(item.payload)
+    species = sorted(merged.values(), key=lambda entry: (entry.latin_name or entry.cn_name).casefold())
+    if category:
         species = [entry for entry in species if entry.category == category]
     if query:
         needle = query.strip().lower()
@@ -274,7 +280,9 @@ def species_catalog(
 @router.get("/species/{species_id}", response_model=SpeciesEntry)
 def species_detail(species_id: str, user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> SpeciesEntry:
     stored = db.get(SpeciesResource, species_id)
-    entry = SpeciesEntry.model_validate(stored.payload) if stored and not stored.is_deleted else get_species_catalog_service().get_species(species_id)
+    if stored and stored.is_deleted:
+        raise HTTPException(status_code=404, detail="物种不存在")
+    entry = SpeciesEntry.model_validate(stored.payload) if stored else get_species_catalog_service().get_species(species_id)
     if entry is None:
         raise HTTPException(status_code=404, detail="物种不存在")
     return entry
@@ -294,6 +302,82 @@ def save_species(payload: SpeciesEntry, species_id: str, user: User = Depends(re
     audit(db, user, "species.save", "species", species_id)
     db.commit()
     return payload
+
+
+@router.post("/admin/species/import")
+async def import_species(
+    file: UploadFile = File(...),
+    user: User = Depends(require_roles(*manage_roles)),
+    db: Session = Depends(get_db),
+) -> dict[str, int]:
+    """Import species resources from a CSV or JSON file."""
+    filename = (file.filename or "").lower()
+    raw = await file.read()
+    try:
+        if filename.endswith(".json") or (file.content_type or "").lower().endswith("json"):
+            payload = json.loads(raw.decode("utf-8-sig"))
+            rows = payload.get("species", []) if isinstance(payload, dict) else payload
+        elif filename.endswith(".csv") or (file.content_type or "").lower().endswith("csv"):
+            rows = list(csv.DictReader(io.StringIO(raw.decode("utf-8-sig"))))
+        else:
+            raise HTTPException(status_code=415, detail="仅支持 CSV 或 JSON 文件")
+    except (UnicodeDecodeError, json.JSONDecodeError, csv.Error) as exc:
+        raise HTTPException(status_code=422, detail=f"资源文件格式无效：{exc}") from exc
+    if not isinstance(rows, list) or not rows:
+        raise HTTPException(status_code=422, detail="资源文件中没有可导入的物种记录")
+
+    created = 0
+    updated = 0
+    for row in rows:
+        if not isinstance(row, dict):
+            raise HTTPException(status_code=422, detail="每条物种记录必须是对象")
+        try:
+            entry = SpeciesEntry.model_validate(row)
+        except Exception as exc:
+            raise HTTPException(status_code=422, detail=f"物种字段校验失败：{exc}") from exc
+        resource = db.get(SpeciesResource, entry.species_id)
+        if resource is None:
+            db.add(SpeciesResource(species_id=entry.species_id, payload=entry.model_dump(mode="json")))
+            created += 1
+        else:
+            resource.payload = entry.model_dump(mode="json")
+            resource.is_deleted = False
+            updated += 1
+        audit(db, user, "species.import", "species", entry.species_id)
+    db.commit()
+    return {"created": created, "updated": updated, "total": created + updated}
+
+
+@router.get("/admin/species/import-template")
+def download_species_import_template(user: User = Depends(require_roles(*manage_roles))) -> Response:
+    """Download a valid one-row JSON template for the species importer."""
+    example = SpeciesEntry(
+        species_id="example_species",
+        cn_name="示例物种",
+        latin_name="Genus species",
+        category="animal",
+        taxon_group="兽类",
+        order="示例目",
+        family="示例科",
+        genus="示例属",
+        protection_level="未列入重点保护名录",
+        source_scope="资料来源说明",
+        recognition_tier="candidate",
+        habits="活动习性说明",
+        diet="食性说明",
+        features=["识别特征一", "识别特征二"],
+        habitat="生境说明",
+        monitoring_value="监测价值说明",
+        similar_species=["相似物种名称"],
+        review_tips="人工复核提示",
+        tags=["示例标签"],
+    )
+    content = json.dumps({"species": [example.model_dump(mode="json")]}, ensure_ascii=False, indent=2) + "\n"
+    return Response(
+        content="\ufeff" + content,
+        media_type="application/octet-stream",
+        headers={"Content-Disposition": 'attachment; filename="species-import-template.json"'},
+    )
 
 
 @router.delete("/admin/species/{species_id}")
@@ -342,6 +426,12 @@ def list_reviews(review_status: str | None = None, user: User = Depends(require_
     if review_status:
         statement = statement.where(ReviewTask.status == review_status)
     return list(db.scalars(statement.limit(200)))
+
+
+@router.get("/admin/field-reports", response_model=list[FieldReportView])
+def admin_field_reports(user: User = Depends(require_roles(*admin_roles)), db: Session = Depends(get_db)) -> list[FieldReport]:
+    """Return mobile field reports for the admin review workspace."""
+    return list(db.scalars(select(FieldReport).order_by(FieldReport.created_at.desc()).limit(500)))
 
 
 @router.post("/admin/reviews/{task_id}/claim", response_model=ReviewTaskView)
@@ -407,6 +497,130 @@ def export_media(user: User = Depends(require_roles(*manage_roles)), db: Session
     audit(db, user, "media.export", "analysis_job", None, count=len(rows))
     db.commit()
     return StreamingResponse(iter([output.getvalue().encode("utf-8-sig")]), media_type="text/csv", headers={"Content-Disposition": "attachment; filename=monitoring-data.csv"})
+
+
+def _csv_response(filename: str, output: io.StringIO) -> StreamingResponse:
+    return StreamingResponse(
+        iter([output.getvalue().encode("utf-8-sig")]),
+        media_type="text/csv",
+        headers={"Content-Disposition": f"attachment; filename={filename}"},
+    )
+
+
+def _detections(job: AnalysisJob) -> list[dict]:
+    if not isinstance(job.result_json, dict):
+        return []
+    detections = job.result_json.get("detections")
+    return detections if isinstance(detections, list) else []
+
+
+def _detection_species(detection: dict) -> str:
+    label = detection.get("species_label") or detection.get("label") or "待确认物种"
+    return str(label)
+
+
+def _detection_confidence(detection: dict) -> float:
+    value = detection.get("confidence", detection.get("classification_confidence", 0))
+    return float(value or 0)
+
+
+@router.get("/admin/reports/overview")
+def reports_overview(user: User = Depends(require_roles(*admin_roles)), db: Session = Depends(get_db)) -> dict[str, object]:
+    jobs = list(db.scalars(select(AnalysisJob)))
+    reports = list(db.scalars(select(FieldReport)))
+    reviews = list(db.scalars(select(ReviewTask)))
+    detections = [detection for job in jobs for detection in _detections(job)]
+    species_names = {_detection_species(detection) for detection in detections}
+    species_names.update((report.final_species_name or report.species_name) for report in reports if report.status == "resolved")
+    months = {job.created_at.strftime("%Y-%m") for job in jobs}
+    months.update(report.observed_at.strftime("%Y-%m") for report in reports)
+    return {
+        "patrol": {
+            "media_count": len(jobs),
+            "succeeded_count": sum(1 for job in jobs if job.status == "succeeded"),
+            "pending_review_count": sum(1 for review in reviews if review.status == "pending"),
+        },
+        "species": {
+            "species_count": len([name for name in species_names if name and name != "待确认物种"]),
+            "detection_count": len(detections) + len([report for report in reports if report.status == "resolved"]),
+            "reviewed_report_count": sum(1 for report in reports if report.status == "resolved"),
+        },
+        "annual": {
+            "month_count": len(months),
+            "media_count": len(jobs),
+            "resolved_review_count": sum(1 for review in reviews if review.status == "resolved"),
+        },
+    }
+
+
+@router.get("/admin/reports/patrol.csv")
+def export_patrol_report(user: User = Depends(require_roles(*manage_roles)), db: Session = Depends(get_db)) -> StreamingResponse:
+    jobs = list(db.scalars(select(AnalysisJob).order_by(AnalysisJob.created_at.desc())))
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["任务ID", "文件名", "来源", "监测点", "相机编号", "素材类型", "状态", "检出目标数", "创建时间"])
+    writer.writerows([
+        [job.id, job.file_name, job.source, job.site_id or "", job.camera_code or "", job.media_type, job.status, len(_detections(job)), job.created_at.isoformat()]
+        for job in jobs
+    ])
+    audit(db, user, "report.export", "patrol_report", None, count=len(jobs))
+    db.commit()
+    return _csv_response("patrol-report.csv", output)
+
+
+@router.get("/admin/reports/species.csv")
+def export_species_report(user: User = Depends(require_roles(*manage_roles)), db: Session = Depends(get_db)) -> StreamingResponse:
+    jobs = list(db.scalars(select(AnalysisJob).where(AnalysisJob.status == "succeeded").order_by(AnalysisJob.created_at.desc())))
+    reports = list(db.scalars(select(FieldReport).where(FieldReport.status == "resolved").order_by(FieldReport.observed_at.desc())))
+    species: dict[str, dict[str, object]] = {}
+    for job in jobs:
+        for detection in _detections(job):
+            name = _detection_species(detection)
+            entry = species.setdefault(name, {"count": 0, "confidence": 0.0, "last_seen": job.created_at, "source": "模型识别"})
+            entry["count"] = int(entry["count"]) + 1
+            entry["confidence"] = max(float(entry["confidence"]), _detection_confidence(detection))
+            if job.created_at > entry["last_seen"]:
+                entry["last_seen"] = job.created_at
+    for report in reports:
+        name = report.final_species_name or report.species_name
+        entry = species.setdefault(name, {"count": 0, "confidence": 0.0, "last_seen": report.observed_at, "source": "人工上报"})
+        entry["count"] = int(entry["count"]) + 1
+        if report.observed_at > entry["last_seen"]:
+            entry["last_seen"] = report.observed_at
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["物种名称", "发现次数", "最高置信度", "最近发现时间", "来源"])
+    for name, entry in sorted(species.items(), key=lambda item: (-int(item[1]["count"]), item[0])):
+        writer.writerow([name, entry["count"], f"{float(entry['confidence']):.4f}", entry["last_seen"].isoformat(), entry["source"]])
+    audit(db, user, "report.export", "species_report", None, count=len(species))
+    db.commit()
+    return _csv_response("species-discovery-report.csv", output)
+
+
+@router.get("/admin/reports/annual.csv")
+def export_annual_report(user: User = Depends(require_roles(*manage_roles)), db: Session = Depends(get_db)) -> StreamingResponse:
+    jobs = list(db.scalars(select(AnalysisJob)))
+    reports = list(db.scalars(select(FieldReport)))
+    reviews = list(db.scalars(select(ReviewTask)))
+    months: dict[str, dict[str, int]] = {}
+    for job in jobs:
+        entry = months.setdefault(job.created_at.strftime("%Y-%m"), {"media": 0, "detections": 0, "field_reports": 0, "reviews": 0})
+        entry["media"] += 1
+        entry["detections"] += len(_detections(job))
+    for report in reports:
+        months.setdefault(report.observed_at.strftime("%Y-%m"), {"media": 0, "detections": 0, "field_reports": 0, "reviews": 0})["field_reports"] += 1
+    for review in reviews:
+        if review.status == "resolved":
+            months.setdefault(review.updated_at.strftime("%Y-%m"), {"media": 0, "detections": 0, "field_reports": 0, "reviews": 0})["reviews"] += 1
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(["月份", "素材数量", "检出目标数", "重点物种上报", "已完成复核"])
+    for month in sorted(months, reverse=True):
+        entry = months[month]
+        writer.writerow([month, entry["media"], entry["detections"], entry["field_reports"], entry["reviews"]])
+    audit(db, user, "report.export", "annual_report", None, count=len(months))
+    db.commit()
+    return _csv_response("annual-monitoring-report.csv", output)
 
 
 @router.get("/admin/analytics/overview")

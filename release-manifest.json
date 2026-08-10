@@ -1,0 +1,16 @@
+﻿{
+    "generated_at":  "2026-07-24T10:53:02.5652419Z",
+    "backend_url":  "http://82.156.50.58:5001",
+    "frontend_package":  {
+                             "path":  "E:\\动植物识别\\frontend-dist-formal-latest.tar.gz",
+                             "size":  16559098,
+                             "sha256":  "d870e2027000149a8c464a82582e77dc0d556e702080464840cf082b61c9bc93",
+                             "lastWriteTime":  "2026-07-24T10:53:00.3893992Z"
+                         },
+    "backend_data_package":  {
+                                 "path":  "E:\\动植物识别\\backend-data-formal-latest.tar.gz",
+                                 "size":  87693772,
+                                 "sha256":  "67757ec3e1c9a2b3ff2a2351488d0a6cd5460f9755613aa48355d95d656b1182",
+                                 "lastWriteTime":  "2026-07-24T10:53:02.4802365Z"
+                             }
+}
